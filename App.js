@@ -11,10 +11,12 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Header from './components/Header';
+import HomeScreen from './screens/Home';
+import AppointmentsScreen from './screens/Appointments';
+import LoginScreen from './screens/Login';
+import LogoutScreen from './screens/Logout';
 import ProfileScreen from './screens/Profile';
 import SettingsScreen from './screens/Settings';
-import SavedScreen from './screens/Saved';
-import ReferScreen from './screens/Refer';
 import DrawerItems from './constants/DrawerItems';
 import { Icon } from 'react-native-elements'
 import { getHeaderTitle } from '@react-navigation/elements';
@@ -55,10 +57,12 @@ const App = () => {
                 }
               }}
               component={
-                drawer.name === 'Profile' ? ProfileScreen
-                  : drawer.name === 'Settings' ? SettingsScreen
-                    : drawer.name === 'Saved Items' ? SavedScreen
-                      : ReferScreen
+                drawer.name === 'Appointments' ? AppointmentsScreen
+                  : drawer.name === 'Profile' ? ProfileScreen
+                    : drawer.name === 'Settings' ? SettingsScreen
+                      : drawer.name === 'Login' ? LoginScreen
+                        : drawer.name === 'Logout' ? LogoutScreen
+                          : HomeScreen
               }
             />
           )
