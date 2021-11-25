@@ -29,7 +29,7 @@ const App = () => {
     <NavigationContainer>
       <Drawer.Navigator
         drawerType="front"
-        initialRouteName="Profile"
+        initialRouteName="Home"
       >
         {
           DrawerItems.map(drawer =>
