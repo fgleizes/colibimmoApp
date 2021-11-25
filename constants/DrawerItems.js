@@ -10,6 +10,11 @@ export default [
     iconName: 'calendar-month'
   },
   {
+    name: 'Projects',
+    iconType: 'material',
+    iconName: 'folder'
+  },
+  {
     name: 'Profile',
     iconType: 'material-community',
     iconName: 'account'
