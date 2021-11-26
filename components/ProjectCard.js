@@ -1,11 +1,19 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity, pressable,Button } from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const CardComponent = () => (
+
+
+
+const CardComponent = (navigation) => (
+    
+    
+
+
     <View style ={stylesCard.Card}>
-        
         <Image style={stylesCard.Img} source={require ('../IMG/imgAppart.jpg')}/>
         <View style={stylesCard.Info}>
             <View style={stylesCard.Txt}>
@@ -15,12 +23,10 @@ const CardComponent = () => (
                 <View style={stylesCard.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">Appartement T2</Text><Text name="propertyArea">36 m²</Text></View>
             </View>
             
-            <Icon style={stylesCard.Icon} name="eye" type="feather" size={24} color="#F27405"  />
-            
+           <Icon onPress={() => navigation.navigate('Details')} style={stylesCard.Icon} name="eye" type="feather" size={24} color="#F27405"/>
         </View>
     </View>
 );
-
 
 const stylesCard = StyleSheet.create ({
     Card:{
@@ -90,7 +96,7 @@ const stylesCard = StyleSheet.create ({
     },
 
     Icon:{
-        // flex:1,
+        flex:1,
         textAlign:'right',
         alignSelf: 'flex-end',
         margin:10

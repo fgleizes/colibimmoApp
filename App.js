@@ -28,6 +28,7 @@ const App = () => {
 
   return (
     <NavigationContainer>
+      
       <Drawer.Navigator
         drawerType="front"
         initialRouteName="Profile"
