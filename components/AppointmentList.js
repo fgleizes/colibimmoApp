@@ -32,10 +32,10 @@ const AppointmentList = () => {
       data={listAppointment}
       renderItem={({ item }) => (
         <View style={styles.table}>
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>: <Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>: <Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>: <Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('h:mm') }</Text>: <Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('h:mm') }</Text> }
+          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
+          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
+          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
+          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('h:mm') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('h:mm') }</Text> }
         </View>
       )}
       keyExtractor={itemAppointement => itemAppointement.id}
