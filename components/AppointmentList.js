@@ -47,12 +47,12 @@ const AppointmentList = () => {
 const styles = StyleSheet.create(
   {
     tableHead:{
-      flexDirection: "row",
+      flexDirection: 'row',
       justifyContent:'space-between',
       marginTop:145
     },
     table:{
-      flexDirection: "row",
+      flexDirection: 'row',
     },
 
     tableWhite:{
