@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet,Text } from 'react-native';
+import { View, StyleSheet,Text, Button } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
 import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
@@ -36,6 +36,7 @@ const AppointmentList = () => {
           {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
           {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
           {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('h:mm') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('h:mm') }</Text> }
+          {item.id%2 == 0?  <Button title= "Press me" color="#f194ff" onPress={() => Alert.alert('Button with adjusted color pressed')}/> : <Button title= "Press me" color="#f194ff" onPress={() => Alert.alert('Button with adjusted color pressed')}/>}
         </View>
       )}
       keyExtractor={itemAppointement => itemAppointement.id}
