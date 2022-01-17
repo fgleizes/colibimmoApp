@@ -7,7 +7,7 @@ import { FlatList } from 'react-native-gesture-handler';
 
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
-  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MDc5ODQwNywiZXhwIjoxNjQwODAyMDA3LCJuYmYiOjE2NDA3OTg0MDcsImp0aSI6IlNvN1pGeVVTOHRzcnpIeUwiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.pIJslppYOC3w9b0sfTpsAhPvLvFo_XnuX8mJgAnM1Gg"
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjQwOTIyNSwiZXhwIjoxNjQyNDEyODI1LCJuYmYiOjE2NDI0MDkyMjUsImp0aSI6IkEyeGd0MGhMSnhIYmVNTGMiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ._P4A1U9ji_o-2Kl2hiDA8BhDc1N8g-sGf3G6aAxsYJQ"
 
   useEffect(() => {
     if(token) {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create(
     tableHead:{
       flexDirection: 'row',
       justifyContent:'space-between',
-      marginTop:145
+      marginTop:115
     },
     table:{
       flexDirection: 'row',
