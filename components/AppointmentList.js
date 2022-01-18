@@ -7,10 +7,9 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 
 
 
-
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
-  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjUxNzE2MCwiZXhwIjoxNjQyNTIwNzYwLCJuYmYiOjE2NDI1MTcxNjAsImp0aSI6IllzN2xmaFlvMkU0cFRTUGoiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.90cJ2koDHQCpTXE1BSWA5iebyj8Am0Dr_HnyAC1QYOQ"
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjUxNzE2MCwiZXhwIjoxNjQyNTIwNzYwLCJuYmYiOjE2NDI1MTcxNjAsImp0aSI6IllzN2xmaFlvMkU0cFRTUGoiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.90cJ2koDHQCpTXE1BSWA5iebyj8Am0Dr_HnyAC1QYOQ'
   const [currentDate, setCurrentDate] = useState('')
   
   useEffect(() => {
