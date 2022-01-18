@@ -13,7 +13,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Header from './components/Header';
 import HomeScreen from './screens/Home';
 import AppointmentsScreen from './screens/Appointments';
-import ProjectsScreen from './screens/Projects'
+import {Projects} from './screens/Projects'
 import LoginScreen from './screens/Login';
 import LogoutScreen from './screens/Logout';
 import ProfileScreen from './screens/Profile';
@@ -60,7 +60,7 @@ const App = () => {
               }}
               component={
                 drawer.name === 'Appointments' ? AppointmentsScreen
-                  : drawer.name === 'Projects' ? ProjectsScreen
+                  : drawer.name === 'Projects' ? Projects
                     : drawer.name === 'Profile' ? ProfileScreen
                       : drawer.name === 'Settings' ? SettingsScreen
                         : drawer.name === 'Login' ? LoginScreen
