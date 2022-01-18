@@ -28,11 +28,11 @@ const AppointmentList = () => {
 }, [token]);
   return (
     <View>
-      <View style={styles.viewBox}>
+     
         <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
-      </View>  
+        <View style={styles.viewBox}></View>  
       <FlatList
       style={styles.flatlistAppointement}
       data={listAppointment}
@@ -64,10 +64,13 @@ const styles = StyleSheet.create(
   {
     
     table:{
-      width:'97%',
+      width:'91%',
       display:'flex',
       flexDirection: 'row',
-      margin: 6,
+      // margin: 6,
+      marginLeft:20,
+      marginRight:20,
+      marginBottom:15,
       alignItems: 'center',
       backgroundColor:'#FFFFFF',
       borderRadius: 10,
@@ -113,12 +116,16 @@ const styles = StyleSheet.create(
     },
     viewDate:{
       marginTop:'25%',
-      marginBottom:'5%',
-      width:'30%'
+      marginBottom:'3%',
+      width:'30%',
+      marginLeft:'6%'
     },
     viewBox:{
       borderBottomWidth:1,
-      marginBottom:'5%'
+      borderColor:'#B4B4B4',
+      marginBottom:'5%',
+      marginLeft:20,
+      width:327
     }
   }
 );
