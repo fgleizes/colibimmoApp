@@ -32,7 +32,7 @@ const headerStyles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    height: 100,
+    // height: 100,
     display: 'flex',
     flexDirection: 'row',
     paddingRight: 30,
