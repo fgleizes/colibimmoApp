@@ -12,12 +12,13 @@ import LogoutScreen from '../screens/Logout';
 import ProfileScreen from '../screens/Profile';
 import SettingsScreen from '../screens/Settings';
 import AppointmentsScreen from '../screens/Appointments';
+import { Projects } from "../screens/Projects";
 
 import { DrawerItems } from '../constants/DrawerItems';
 import { UserContext } from "../user-context";
 
 const Drawer = createDrawerNavigator();
-const loggedItems = ['Appointments', 'Profile', 'Logout'];
+const loggedItems = ['Projects', 'Appointments', 'Profile', 'Logout'];
 const unloggedItems = ['Login', 'Signin'];
 
 export const MyDrawer = () => {
@@ -57,12 +58,13 @@ export const MyDrawer = () => {
           }}
           component={
             drawer.name === 'Appointments' ? AppointmentsScreen
-              : drawer.name === 'Profile' ? ProfileScreen
-                : drawer.name === 'Settings' ? SettingsScreen
-                  : drawer.name === 'Login' ? LoginScreen
-                    : drawer.name === 'Signin' ? SigninScreen
-                      : drawer.name === 'Logout' ? LogoutScreen 
-                        : HomeScreen
+              : drawer.name === 'Projects' ? Projects
+                : drawer.name === 'Profile' ? ProfileScreen
+                  : drawer.name === 'Settings' ? SettingsScreen
+                    : drawer.name === 'Login' ? LoginScreen
+                      : drawer.name === 'Signin' ? SigninScreen
+                        : drawer.name === 'Logout' ? LogoutScreen 
+                          : HomeScreen
           }
         />
       )}
@@ -124,7 +126,6 @@ export function CustomDrawerContent(props) {
         </View> */}
         <DrawerItemList state={newState} {...rest} />
       </DrawerContentScrollView>
-      {logoutButton}
     </React.Fragment>
   );
 }
