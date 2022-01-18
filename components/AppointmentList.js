@@ -1,42 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet,Text, Button } from 'react-native';
+import { View, StyleSheet,Text, ListItem } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
 import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
+import { Icon } from 'react-native-elements/dist/icons/Icon';
+
+
 
 
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
-  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjQwOTIyNSwiZXhwIjoxNjQyNDEyODI1LCJuYmYiOjE2NDI0MDkyMjUsImp0aSI6IkEyeGd0MGhMSnhIYmVNTGMiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ._P4A1U9ji_o-2Kl2hiDA8BhDc1N8g-sGf3G6aAxsYJQ"
-
+  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjUxNzE2MCwiZXhwIjoxNjQyNTIwNzYwLCJuYmYiOjE2NDI1MTcxNjAsImp0aSI6IllzN2xmaFlvMkU0cFRTUGoiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.90cJ2koDHQCpTXE1BSWA5iebyj8Am0Dr_HnyAC1QYOQ"
+  const [currentDate, setCurrentDate] = useState('')
+  
   useEffect(() => {
+    var date = Moment(new Date()).format('DD MMM YYYY')
+    
+    setCurrentDate(date)
     if(token) {
       getAppointment(token)
         .then(response =>{
-          if(response.status === 200){
-            const listAppointment = response.data
-            setListAppointment(listAppointment)
+          if(response.status === 200){ 
+            setListAppointment(response.data)
           }
         })
     }
 }, [token]);
   return (
     <View>
-          <View style={styles.tableHead}>
-          <Text>Nom</Text>
-          <Text>Projet</Text>
-          <Text>Date</Text>
-          <Text>Heure</Text>
-          </View>
+      <View style={styles.viewBox}>
+        <View style={styles.viewDate}>
+          <Text style={styles.textStyle}>{currentDate}</Text>
+        </View>
+      </View>  
       <FlatList
+      style={styles.flatlistAppointement}
       data={listAppointment}
       renderItem={({ item }) => (
         <View style={styles.table}>
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('D/MM/YYYY') }</Text> }
-          {item.id%2 == 0?  <Text style={styles.tableGrey}>{ Moment(item.start_datetime).format('h:mm') }</Text>:<Text style={styles.tableWhite}>{ Moment(item.start_datetime).format('h:mm') }</Text> }
-          {item.id%2 == 0?  <Button title= "Press me" color="#f194ff" onPress={() => Alert.alert('Button with adjusted color pressed')}/> : <Button title= "Press me" color="#f194ff" onPress={() => Alert.alert('Button with adjusted color pressed')}/>}
+          <View style={styles.flexDate}>
+            <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
+            <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('MMM') }</Text>
+          </View>
+          <View style={styles.flexProject}>
+            <Text style={styles.projectWordStyle}>François Quenard {item.id}</Text>
+            <Text style={styles.projectWordStyle}>12345</Text>
+          </View>
+          <Text style={styles.textHour}>{ Moment(item.start_datetime).format('h:mm') }</Text>
+          < Icon name='eye'
+          type='feather'
+          color='#F27405'
+          size={26}
+          />
         </View>
       )}
       keyExtractor={itemAppointement => itemAppointement.id}
@@ -47,22 +62,63 @@ const AppointmentList = () => {
 
 const styles = StyleSheet.create(
   {
-    tableHead:{
-      flexDirection: 'row',
-      justifyContent:'space-between',
-      marginTop:115
-    },
+    
     table:{
+      width:'97%',
+      display:'flex',
       flexDirection: 'row',
+      margin: 6,
+      alignItems: 'center',
+      backgroundColor:'#FFFFFF',
+      borderRadius: 10,
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowOpacity: 0.29,
+      shadowRadius: 4.65,
+      elevation: 7,
     },
-
-    tableWhite:{
-      backgroundColor:'white',
-      padding:13
+    flexDate:{
+      display:'flex',
+      flexDirection: 'column',
+      alignItems: "center",
     },
-    tableGrey:{
-      backgroundColor:'#E5E5E5',
-      padding:13
+    flexProject:{
+      display:'flex',
+      flexDirection: 'column',
+      width:'55%',
+      paddingLeft: '6%',
+      paddingRight: '6%',
+      paddingTop: '3%',
+      paddingBottom: '3%',
+    },
+    dateWordStyle:{
+      fontSize:19,
+      fontWeight: "bold",
+      paddingLeft: '3%',
+    },
+    projectWordStyle:{
+      fontSize:16
+    },
+    textHour:{
+      paddingRight:'10%'
+    },
+    flatlistAppointement:{
+      marginBottom:'15%'
+    },
+    textStyle:{
+      fontSize:32,
+    },
+    viewDate:{
+      marginTop:'25%',
+      marginBottom:'5%',
+      width:'30%'
+    },
+    viewBox:{
+      borderBottomWidth:1,
+      marginBottom:'5%'
     }
   }
 );
