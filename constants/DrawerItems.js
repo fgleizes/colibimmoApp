@@ -30,11 +30,6 @@ export const DrawerItems = [
     iconName: 'login'
   },
   {
-    name: 'Signin',
-    iconType: 'material',
-    iconName: 'assignment-ind'
-  },
-  {
     name: 'Settings',
     iconType: 'Feather',
     iconName: 'settings'

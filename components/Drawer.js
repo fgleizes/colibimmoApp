@@ -19,7 +19,7 @@ import { UserContext } from "../user-context";
 
 const Drawer = createDrawerNavigator();
 const loggedItems = ['Projects', 'Appointments', 'Profile', 'Logout'];
-const unloggedItems = ['Login', 'Signin'];
+const unloggedItems = ['Login'];
 
 export const MyDrawer = () => {
   const contextUser = useContext(UserContext);
