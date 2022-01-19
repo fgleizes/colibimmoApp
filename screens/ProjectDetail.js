@@ -4,7 +4,8 @@ import { Icon, Button } from 'react-native-elements'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function DetailsScreen({navigation}) {
+export default function DetailsScreen({navigation,route}) {
+  const {idProject} = route.params
   return (
     <>
       <Image style={styles.imgAmbiance} source={require ('../IMG/imgAppart.jpg')}/>
@@ -25,16 +26,16 @@ export default function DetailsScreen({navigation}) {
         
         <View style={styles.detailInfoProject}>
             <View style={styles.têteDetailProject}>
-                <Text style={styles.RefDetailProject} >REF PROJECT</Text>
-                <Text>CreateAt</Text>
+                <Text style={styles.RefDetailProject} >{idProject.reference}</Text>
+                <Text>{idProject.created_at}</Text>
             </View>
-            <Text>Vente</Text>
-            <Text>statut : en cours</Text>
-            <Text>Monsieurs GLEIZE aimerais vendre son appartement à Versailles proche gare rive droite et proche d’une crèche.</Text>
+            <Text>{idProject.id_Type_project}</Text>
+            <Text>{idProject.id_Statut_project}</Text>
+            <Text>{idProject.description}</Text>
         </View>
         {/* CTA PAGE PROFIL CONTACT  */}
         <View style={styles.detailContactProject}>
-            <View style={styles.nomPrenom}><Text style={styles.prenom} >Florent </Text><Text style={styles.nom}>GLEIZE</Text></View>
+            <View style={styles.nomPrenom}><Text style={styles.prenom} >{idProject.id_Person} </Text><Text style={styles.nom}>{idProject.id_Person}</Text></View>
             <Button 
            icon={<Icon 
             name="eye"
@@ -52,8 +53,8 @@ export default function DetailsScreen({navigation}) {
         <View style={styles.propertyInfoCta}>
             <View style={styles.propertyInfo}>
                 <View style={styles.typePropertyPrice}><Text style={styles.typePropertyTxt}>Appartement T2</Text><Text style={styles.pricePropertyTxt}>320000€</Text></View>
-                <Text>45 m²</Text>
-                <Text>2 ter rue du parc de Clagny</Text>
+                <Text>{idProject.area}</Text>
+                <Text>{idProject.id_Address}</Text>
                 <View style={styles.CpCity}><Text style={styles.CP}>78000</Text><Text>Versailles</Text></View>
                 <Text style={styles.roomOptionTitle}>Room</Text>
                     <View style={styles.listOptionProperty}>

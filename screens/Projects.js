@@ -16,41 +16,41 @@ const Stack = createNativeStackNavigator();
 export const Projects = () => {
     return (
         <NavigationContainer independent={true}>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={ProjectsScreen} />
-                <Stack.Screen name="Details" component={DetailsScreen} />
-            </Stack.Navigator>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={ProjectsScreen} />
+            <Stack.Screen name="Details" component={DetailsScreen} />
+        </Stack.Navigator>
         </NavigationContainer>
     );
 }
-
-const RenderProjectCard = ({item,navigation}) => {
-    return (
-        <View style ={stylesListItem.Card}>   
-            <Image style={stylesListItem.Img} source={require ('../IMG/imgAppart.jpg')}/>
-            <View style={stylesListItem.Info}>
-                <View style={stylesListItem.Txt}>
-                    <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
-                    <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.id_Person}</Text><Text name="nom">{item.id_Person}</Text></View>
-                    <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.id_Address}</Text><Text name="adresseVille">{item.id_Address}</Text></View>
-                    <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">Appartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
-                </View>
-                {/* BOUTON TO DETAIL PROJECT  */}
-            <Button 
+const RenderProjectCard = ({item,navigation,idProject}) => {
+return (
+    <View style ={stylesListItem.Card}>   
+        <Image style={stylesListItem.Img} source={require ('../IMG/imgAppart.jpg')}/>
+        <View style={stylesListItem.Info}>
+            <View style={stylesListItem.Txt}>
+                <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
+                <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.id_Person}</Text><Text name="nom">{item.id_Person}</Text></View>
+                <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.id_Address}</Text><Text name="adresseVille">{item.id_Address}</Text></View>
+                <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">Appartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
+            </View>
+            {/* BOUTON TO DETAIL PROJECT  */}
+        <Button 
+        icon={<Icon 
+            name="eye"
+                type="feather"
+                size={24}
+                color="#F27405"
+            
+            />}
                 buttonStyle={stylesListItem.Icon} 
                 type="clear"
-                onPress={() => navigation.navigate('Details')} 
-                icon={<Icon 
-                    name="eye"
-                    type="feather"
-                    size={24}
-                    color="#F27405"
-                />}
+                onPress={() => navigation.navigate('Details',{idProject : idProject})} 
             />
-            </View>
         </View>
-    )
-}
+    </View>
+)
+        }
 
 const ProjectsScreen = ({navigation}) => {
     const [listProjects, setListProjects] = useState({})
@@ -75,7 +75,7 @@ const ProjectsScreen = ({navigation}) => {
         <Filtre></Filtre>
         {/* LISTE CARDS PROJECT  */}
         <FlatList  data={listProjects}
-            renderItem={({item}) => <RenderProjectCard navigation={navigation} item={item} />}
+            renderItem={({item}) => <RenderProjectCard navigation={navigation} item={item} idProject={item} />}
             keyExtractor={item=>item.id}
         />
         </View>
