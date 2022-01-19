@@ -1,4 +1,4 @@
-export default [
+export const DrawerItems = [
   {
     name: 'Home',
     iconType: 'material-community',
@@ -10,14 +10,19 @@ export default [
     iconName: 'calendar-month'
   },
   {
+    name: 'Projects',
+    iconType: 'material',
+    iconName: 'folder'
+  },
+  {
     name: 'Profile',
     iconType: 'material-community',
     iconName: 'account'
   },
   {
-    name: 'Settings',
-    iconType: 'Feather',
-    iconName: 'settings'
+    name: 'Logout',
+    iconType: 'material',
+    iconName: 'logout'
   },
   {
     name: 'Login',
@@ -25,8 +30,8 @@ export default [
     iconName: 'login'
   },
   {
-    name: 'Logout',
-    iconType: 'material',
-    iconName: 'logout'
-  }
+    name: 'Settings',
+    iconType: 'Feather',
+    iconName: 'settings'
+  },
 ]

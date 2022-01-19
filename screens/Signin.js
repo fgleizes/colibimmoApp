@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { View, Text } from "react-native";
 
-export default function SavedScreen() {
+export default function SigninScreen() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 16, fontWeight: '700' }}>Saved Screen</Text>
+      <Text style={{ fontSize: 16, fontWeight: '700' }}>Signin Screen</Text>
     </View>
   );
 }
