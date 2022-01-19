@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet,Text, ListItem } from 'react-native';
+import { View, StyleSheet,Text } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
 import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 
 
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjUxNzE2MCwiZXhwIjoxNjQyNTIwNzYwLCJuYmYiOjE2NDI1MTcxNjAsImp0aSI6IllzN2xmaFlvMkU0cFRTUGoiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.90cJ2koDHQCpTXE1BSWA5iebyj8Am0Dr_HnyAC1QYOQ'
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjU4NDU2MywiZXhwIjoxNjQyNTg4MTYzLCJuYmYiOjE2NDI1ODQ1NjMsImp0aSI6IjYzd3BRY1FKSEFtYVBzR1QiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.R5S1hklfendGim7ILkIG1UR8tkj_mTElLc6AxSjJXLs'
   const [currentDate, setCurrentDate] = useState('')
-  
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(null);
+  const [items, setItems] = useState([]);
   useEffect(() => {
     var date = Moment(new Date()).format('DD MMM YYYY')
     
@@ -20,18 +23,28 @@ const AppointmentList = () => {
       getAppointment(token)
         .then(response =>{
           if(response.status === 200){ 
-            setListAppointment(response.data)
+            setListAppointment(response.data)      
           }
         })
     }
 }, [token]);
   return (
+    
     <View>
      
         <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
-        <View style={styles.viewBox}></View>  
+        <View style={styles.viewSeparator}></View>  
+        <DropDownPicker
+      open={open}
+      value={value}
+      items={items}
+      setOpen={setOpen}
+      setValue={setValue}
+      setItems={setItems}
+      onChangeItem={item => setValue(item.value)} 
+    />
       <FlatList
       style={styles.flatlistAppointement}
       data={listAppointment}
@@ -56,6 +69,7 @@ const AppointmentList = () => {
       keyExtractor={itemAppointement => itemAppointement.id}
       />
     </View>  
+    
   );
 }
 
@@ -119,7 +133,7 @@ const styles = StyleSheet.create(
       width:'30%',
       marginLeft:'6%'
     },
-    viewBox:{
+    viewSeparator:{
       borderBottomWidth:1,
       borderColor:'#B4B4B4',
       marginBottom:'5%',
