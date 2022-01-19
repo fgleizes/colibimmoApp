@@ -24,13 +24,12 @@ export const LoginForm = ({setIsLogin}) => {
     login(mail, password).then(response => {
       if (response.status == 200) {
         const token = response.data.access_token
-        getProfile(token)
-          .then(response => {
-            if (response.status === 200) {
-              contextUser.login(token, { firstname: response.data.firstname, lastname: response.data.lastname })
-              setIsLogin(true)
-            }
-          })
+        getProfile(token).then(response => {
+          if (response.status === 200) {
+            contextUser.login(token, { firstname: response.data.firstname, lastname: response.data.lastname })
+            setIsLogin(true)
+          }
+        })
       } else {
         setIsLogin(false)
       }

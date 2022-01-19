@@ -12,6 +12,15 @@ export default function LoginScreen({ navigation }) {
     }
   }, [isLoggin]);
 
+  useEffect(() => {
+    if (isLoggin) {
+      navigation.navigate("Home");
+    }
+    return () => {
+      setIsLogin(false)
+    }
+  }, [isLoggin])
+
   return (
     <View style={{ 
       flex: 1, 
