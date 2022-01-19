@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
-import {getProjects} from '../api/ProjectAPI'
+import {getProjects} from '../api/projectAPI'
 
 
 
@@ -37,17 +37,16 @@ const RenderProjectCard = ({item,navigation}) => {
                 </View>
                 {/* BOUTON TO DETAIL PROJECT  */}
             <Button 
-            icon={<Icon 
-                name="eye"
+                buttonStyle={stylesListItem.Icon} 
+                type="clear"
+                onPress={() => navigation.navigate('Details')} 
+                icon={<Icon 
+                    name="eye"
                     type="feather"
                     size={24}
                     color="#F27405"
-                
                 />}
-                    buttonStyle={stylesListItem.Icon} 
-                    type="clear"
-                    onPress={() => navigation.navigate('Details')} 
-                />
+            />
             </View>
         </View>
     )
