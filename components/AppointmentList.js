@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import { View, StyleSheet,Text } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
-import Moment from 'moment';
+import Moment, { months } from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import DropDownPicker from 'react-native-dropdown-picker';
+import { UserContext } from '../user-context';
 
 
 
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL0FQSS1Db2xpYmltbW9cL3B1YmxpY1wvXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjU4NDU2MywiZXhwIjoxNjQyNTg4MTYzLCJuYmYiOjE2NDI1ODQ1NjMsImp0aSI6IjYzd3BRY1FKSEFtYVBzR1QiLCJzdWIiOjIsInBydiI6ImEzNGY0ODg3NDdjNDFmMWQxYTAzNTU4NDE2NjNmYWYxOTI3MDNhMmIifQ.R5S1hklfendGim7ILkIG1UR8tkj_mTElLc6AxSjJXLs'
+  const context = useContext(UserContext)
   const [currentDate, setCurrentDate] = useState('')
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState();
+  
   useEffect(() => {
     var date = Moment(new Date()).format('DD MMM YYYY')
-    
     setCurrentDate(date)
-    if(token) {
-      getAppointment(token)
+    setItems(Moment.monthsShort().map(elem => ({label: elem, value: elem})))
+    
+    if(context.token) {
+      getAppointment(context.token)
         .then(response =>{
-          if(response.status === 200){ 
-            setListAppointment(response.data)      
+          if(response.status === 200){
+            setListAppointment(response.data)
           }
         })
     }
-}, [token]);
-  return (
     
+}, [context.token]);
+
+
+
+  return (
     <View>
-     
         <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
@@ -43,23 +48,39 @@ const AppointmentList = () => {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
-      onChangeItem={item => setValue(item.value)} 
+      theme="COLIBIMMO"
+      autoScroll={true}
+      onChangeValue={(value) => {
+       if(value === value){
+         setValue(null)
+       }
+      }}
     />
+
       <FlatList
       style={styles.flatlistAppointement}
       data={listAppointment}
       renderItem={({ item }) => (
-        <View style={styles.table}>
-          <View style={styles.flexDate}>
+        
+         <View style={styles.table}>
+          <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null? 'flex' : 'none', 
+                        flexDirection: 'column',
+                        alignItems: "center",}}>
             <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
             <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('MMM') }</Text>
           </View>
-          <View style={styles.flexProject}>
+          <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+                      flexDirection: 'column',
+                      width:'55%',
+                      paddingLeft: '6%',
+                      paddingRight: '6%',
+                      paddingTop: '3%',
+                      paddingBottom: '3%',}}>
             <Text style={styles.projectWordStyle}>François Quenard {item.id}</Text>
             <Text style={styles.projectWordStyle}>12345</Text>
           </View>
-          <Text style={styles.textHour}>{ Moment(item.start_datetime).format('h:mm') }</Text>
-          < Icon name='eye'
+          <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'10%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
+          < Icon style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none'}} name='eye'
           type='feather'
           color='#F27405'
           size={26}
@@ -80,7 +101,6 @@ const styles = StyleSheet.create(
       width:'91%',
       display:'flex',
       flexDirection: 'row',
-      // margin: 6,
       marginLeft:20,
       marginRight:20,
       marginBottom:15,
@@ -96,30 +116,13 @@ const styles = StyleSheet.create(
       shadowRadius: 4.65,
       elevation: 7,
     },
-    flexDate:{
-      display:'flex',
-      flexDirection: 'column',
-      alignItems: "center",
-    },
-    flexProject:{
-      display:'flex',
-      flexDirection: 'column',
-      width:'55%',
-      paddingLeft: '6%',
-      paddingRight: '6%',
-      paddingTop: '3%',
-      paddingBottom: '3%',
-    },
     dateWordStyle:{
       fontSize:19,
       fontWeight: "bold",
-      paddingLeft: '3%',
+      paddingLeft: '2%',
     },
     projectWordStyle:{
       fontSize:16
-    },
-    textHour:{
-      paddingRight:'10%'
     },
     flatlistAppointement:{
       marginBottom:'15%'
