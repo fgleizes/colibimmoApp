@@ -49,19 +49,12 @@ const AppointmentList = () => {
       setValue={setValue}
       setItems={setItems}
       theme="COLIBIMMO"
-      autoScroll={true}
-      onChangeValue={(value) => {
-       if(value === value){
-         setValue(null)
-       }
-      }}
     />
 
       <FlatList
       style={styles.flatlistAppointement}
       data={listAppointment}
       renderItem={({ item }) => (
-        
          <View style={styles.table}>
           <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null? 'flex' : 'none', 
                         flexDirection: 'column',
