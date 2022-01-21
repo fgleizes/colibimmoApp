@@ -1,13 +1,11 @@
 import React, { useState,useEffect } from 'react';
-import axios from 'axios';
-import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
-import CardComponent from '../components/ProjectCard'
+import { View, Image,Text, StyleSheet,FlatList } from "react-native";
 import Filtre from '../components/Filtre'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
-import {getProjects} from '../api/projectAPI'
+import {getProjects, getMainImageProject} from '../api/projectAPI'
 
 
 
@@ -25,6 +23,18 @@ export const Projects = () => {
 }
 
 const RenderProjectCard = ({item,navigation}) => {
+    // const [mainImageProject, setmainImageProject] = useState()
+
+    // useEffect(() => {
+    //     getMainImageProject(item.id)
+    //         .then(response => {
+    //             if (response.status === 200) {
+    //                 setmainImageProject(response.data)
+    //                 console.log(mainImageProject)
+    //             }
+    //         })
+    // }, []);
+
     return (
         <View style ={stylesListItem.Card}>   
             <Image style={stylesListItem.Img} source={require ('../IMG/imgAppart.jpg')}/>
@@ -54,19 +64,16 @@ const RenderProjectCard = ({item,navigation}) => {
 
 const ProjectsScreen = ({navigation}) => {
     const [listProjects, setListProjects] = useState({})
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjQxNzI1OCwiZXhwIjoxNjQyNDIwODU4LCJuYmYiOjE2NDI0MTcyNTgsImp0aSI6IkVLY3NGVGFaNlRiRjBBb1EiLCJzdWIiOjIzLCJwcnYiOiJhMzRmNDg4NzQ3YzQxZjFkMWEwMzU1ODQxNjYzZmFmMTkyNzAzYTJiIn0.vYJip9X97-01Tor6cKctBdnvTY4QpzD-ihZtX8my9ds"
 
     useEffect(() => {
-        if(token) {
-            getProjects(token)
-                .then(response =>{
-                    if(response.status === 200){
-                        setListProjects(response.data)
-                        console.log(listProjects)
-                    }
-                })
-        }
-    }, [token]);
+        getProjects()
+            .then(response =>{
+                if(response.status === 200){
+                    setListProjects(response.data)
+                    console.log(listProjects)
+                }
+            })
+    }, []);
 
   return (
         
