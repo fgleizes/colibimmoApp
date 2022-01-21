@@ -3,25 +3,89 @@ import { View, Image,Text, StyleSheet,ScrollView } from "react-native";
 import { Icon, Button } from 'react-native-elements'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { CreateProject } from './CreateProjectScreen';
+
+const Stack = createNativeStackNavigator();
+
+export const Projects = () => {
+    return (
+        <NavigationContainer independent={true}>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={ProjectsScreen} />
+            <Stack.Screen name="Details" component={DetailsScreen} />
+        </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
 
 export default function DetailsScreen({navigation,route}) {
   const {idProject} = route.params
+  const dataOptions = idProject.option_project
+  const dataRooms = idProject.room_project
+  console.log(dataOptions)
   return (
     <>
+        {/* <NavigationContainer independent={true}>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={DetailsScreen} />
+            <Stack.Screen name="Create" component={CreateProject} />
+        </Stack.Navigator>
+        </NavigationContainer> */}
       <Image style={styles.imgAmbiance} source={require ('../IMG/imgAppart.jpg')}/>
       <ScrollView style ={styles.ContainerCard}>
           {/* BOUTON RETOUR */}
-        <View>
-        <Button 
-        icon={<Icon 
-            name="arrow-back-ios"
-                type="MaterialIcons"
-                size={24}
-                color="#4B4B4B"
-            
-            />}
-        buttonStyle={styles.ButtonBack} title="Go back" onPress={() => navigation.goBack() } />
+        <View style={styles.buttonsHeader}>
+            <View style={styles.buttonLeft}>
+                <Button 
+                    icon={
+                        <Icon 
+                            name="arrow-back-ios"
+                            type="MaterialIcons"
+                            size={24}
+                            color="#4B4B4B"
+                        
+                        />
+                    }
+                    buttonStyle={styles.ButtonBack} title="" onPress={() => navigation.goBack() } 
+                />
+            </View>
+            <View style={styles.ButtonsRight}>
+                <View>
+                    <Button 
+                    icon={<Icon 
+                        name="create"
+                            type="MaterialIcons"
+                            size={24}
+                            color="#4B4B4B"
+                        
+                        />}
+                    buttonStyle={styles.ButtonUpdate} title="" onPress={() => navigation.goBack() } />
+                </View>
+                <View>                    
+                    <Button 
+                    icon={<Icon 
+                        name="delete-outline"
+                            type="MaterialIcons"
+                            size={26}
+                            color="#4B4B4B"
+                        
+                        />}
+                    buttonStyle={styles.ButtonDelete} title="" onPress={() => navigation.goBack() } />
+                </View>
+                <View>
+                    <Button 
+                    icon={<Icon 
+                        name="add"
+                            type="MaterialIcons"
+                            size={30}
+                            color="#4B4B4B"
+                        
+                        />}
+                    buttonStyle={styles.ButtonCreate} title="" onPress={() => navigation.goBack()} />
+                </View>
+            </View>
         </View>
+        
         {/* ENTETE DECRIPTION PROJET */}
         
         <View style={styles.detailInfoProject}>
@@ -29,13 +93,13 @@ export default function DetailsScreen({navigation,route}) {
                 <Text style={styles.RefDetailProject} >{idProject.reference}</Text>
                 <Text>{idProject.created_at}</Text>
             </View>
-            <Text>{idProject.id_Type_project}</Text>
-            <Text>{idProject.id_Statut_project}</Text>
+            <Text>type : {idProject.id_Type_project.name}</Text>
+            <Text>status : {idProject.id_Statut_project.name}</Text>
             <Text>{idProject.description}</Text>
         </View>
         {/* CTA PAGE PROFIL CONTACT  */}
         <View style={styles.detailContactProject}>
-            <View style={styles.nomPrenom}><Text style={styles.prenom} >{idProject.id_Person} </Text><Text style={styles.nom}>{idProject.id_Person}</Text></View>
+            <View style={styles.nomPrenom}><Text style={styles.prenom} >{idProject.id_Person.firstname} </Text><Text style={styles.nom}>{idProject.id_Person.lastname}</Text></View>
             <Button 
            icon={<Icon 
             name="eye"
@@ -52,26 +116,49 @@ export default function DetailsScreen({navigation,route}) {
         {/* DESCRIPTION PROPERTY */}
         <View style={styles.propertyInfoCta}>
             <View style={styles.propertyInfo}>
-                <View style={styles.typePropertyPrice}><Text style={styles.typePropertyTxt}>Appartement T2</Text><Text style={styles.pricePropertyTxt}>320000€</Text></View>
-                <Text>{idProject.area}</Text>
-                <Text>{idProject.id_Address}</Text>
-                <View style={styles.CpCity}><Text style={styles.CP}>78000</Text><Text>Versailles</Text></View>
+                <View style={styles.typePropertyPrice}>
+                  <Text style={styles.typePropertyTxt}>Appartement T2</Text><Text>{idProject.area}m²</Text>
+                  <Text style={styles.pricePropertyTxt}>{idProject.price} €</Text>
+                </View>
+
+                
+                <Text>{idProject.id_Address.number} {idProject.id_Address.street}</Text>
+
+                <View style={styles.CpCity}>
+                  <Text style={styles.CP}>{idProject.id_Address.City.zip_code}</Text>
+                  <Text>{idProject.id_Address.City.name}</Text>
+                </View>
+
                 <Text style={styles.roomOptionTitle}>Room</Text>
-                    <View style={styles.listOptionProperty}>
-                        <Icon></Icon>
-                    </View>
+
+                <View style={styles.listOptionProperty}>
+                    {/* <Icon></Icon>
+                     */}
+                    {dataRooms.map(room =>
+                        <Text>{room.name} {room.area}m² | </Text>
+                    )}
+                </View>
+
+
                 <Text style={styles.roomOptionTitle}>Option</Text>
-                    <View style={styles.listOptionProperty}>
-                        <Icon   
-                            name="eye"
-                            type="feather"
-                            size={24}
-                            color="#fff">
-                        </Icon>
-                    </View>
+
+                <View style={styles.listOptionProperty}>
+                    {/* <Icon   
+                        name="eye"
+                        type="feather"
+                        size={24}
+                        color="#fff">
+                    </Icon> */}
+                    {dataOptions.map(option => 
+                      <Text>{option.name} | </Text>
+                    )}
+                </View>
             </View>
             <Button title="VOIR LES IMAGES" buttonStyle={styles.ctaShowImg}></Button>
         </View> 
+        <View style={styles.gestionAgent}>
+            <Text style={styles.gestionAgentText}>Bien géré par {idProject.id_PersonAgent.firstname} {idProject.id_PersonAgent.lastname}</Text>
+        </View>
         
         
       </ScrollView>
@@ -85,14 +172,73 @@ const styles = StyleSheet.create ({
         padding: 20,
     },
 
-//styles DetailProject
+//Icon header
+
+
+    ButtonsRight:{
+        flexDirection:'row',
+    },
+
+    buttonLeft:{
+        flexDirection:'row',
+    },
+
+    buttonsHeader:{
+        flexDirection:'row',
+        justifyContent:"space-between",
+    },
+
+    
+
     ButtonBack:{
         backgroundColor:'#fff',
         borderRadius:50,
         width:50,
         height:50,
-        paddingLeft:25,
+        paddingLeft:15,
     },
+
+    ButtonDelete:{
+        marginLeft:20,
+        backgroundColor:'#fff',
+        borderRadius:50,
+        width:50,
+        height:50,
+        // paddingLeft:22,
+    },
+
+    ButtonUpdate:{
+        marginLeft:20,
+        backgroundColor:'#fff',
+        borderRadius:50,
+        width:50,
+        height:50,
+        // paddingLeft:22,
+    },
+
+    ButtonCreate:{
+        marginLeft:20,
+        backgroundColor:'#fff',
+        borderRadius:50,
+        width:50,
+        height:50,
+        // paddingLeft:21,
+    },
+
+//gestion Agent
+
+    gestionAgent:{
+        marginTop:20,
+        
+    },
+
+    gestionAgentText:{
+        fontSize:18,
+        fontWeight:"bold",
+    },
+
+//styles DetailProject
+    
     detailInfoProject:{
         backgroundColor:'white',
         marginTop:20,

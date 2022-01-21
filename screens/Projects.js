@@ -8,7 +8,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
 import {getProjects} from '../api/projectAPI'
-
+import { CreateProject } from './CreateProjectScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +19,7 @@ export const Projects = () => {
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={ProjectsScreen} />
             <Stack.Screen name="Details" component={DetailsScreen} />
+            <Stack.Screen name="Create" component={CreateProject} />
         </Stack.Navigator>
         </NavigationContainer>
     );
@@ -30,8 +31,8 @@ return (
         <View style={stylesListItem.Info}>
             <View style={stylesListItem.Txt}>
                 <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
-                <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.id_Person}</Text><Text name="nom">{item.id_Person}</Text></View>
-                <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.id_Address}</Text><Text name="adresseVille">{item.id_Address}</Text></View>
+                <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.id_Person.firstname}</Text><Text name="nom">{item.id_Person.lastname}</Text></View>
+                <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.id_Address.City.zip_code}</Text><Text name="adresseVille">{item.id_Address.City.name}</Text></View>
                 <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">Appartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
             </View>
             {/* BOUTON TO DETAIL PROJECT  */}
