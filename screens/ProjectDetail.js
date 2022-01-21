@@ -160,7 +160,7 @@ export default function DetailsScreen({navigation,route}) {
 const styles = StyleSheet.create ({
     ContainerCard:{
         paddingTop:70,
-        padding: 20,
+        padding:20,
     },
 
 //Icon header

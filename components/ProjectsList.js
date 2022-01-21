@@ -1,13 +1,7 @@
 import React, { useState,useEffect } from 'react';
-import axios from 'axios';
 import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
 import Filtre from './Filtre'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Icon, Button } from 'react-native-elements'
-import DetailsScreen from '../screens/ProjectDetail'
 import {getProjects} from '../api/projectAPI'
-import CreateProject from '../screens/CreateProjectScreen';
 import {RenderProjectCard} from './RenderProjectCard'
 
 export const ProjectsScreen = ({navigation}) => {
@@ -26,7 +20,7 @@ export const ProjectsScreen = ({navigation}) => {
         }
     }, [token]);
 
-  return (
+return (
         
         <View style={stylesListItem.ContainerCard}>
         {/* FILTRE CARD PROJECT */}
@@ -44,6 +38,7 @@ export const ProjectsScreen = ({navigation}) => {
 const stylesListItem = StyleSheet.create ({
     ContainerCard:{
         paddingTop:70,
-        paddingBottom:60
+        paddingBottom:60,
+        padding:20,
     }
 })

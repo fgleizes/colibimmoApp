@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
+import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
+
 
 
 export default function CreateProject ({navigation}) {
@@ -28,8 +27,7 @@ export default function CreateProject ({navigation}) {
 const styles = StyleSheet.create ({
     ContainerCard:{
         paddingTop:70,
-        // paddingLeft:20,
-        // paddingRight:20,
+        padding:20,
         paddingBottom:60
     },
 })

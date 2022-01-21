@@ -34,8 +34,6 @@ export function RenderProjectCard({item,navigation,idProject})  {
     const stylesListItem = StyleSheet.create ({
         ContainerCard:{
             paddingTop:70,
-            // paddingLeft:20,
-            // paddingRight:20,
             paddingBottom:60
         },
     
@@ -55,8 +53,7 @@ export function RenderProjectCard({item,navigation,idProject})  {
             borderRadius:10,
             maxHeight:150,
             marginBottom:10,
-            marginLeft:20,
-            marginRight:20,
+            
             
         },
         nomPrenom:{
