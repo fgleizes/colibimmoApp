@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 
 
-export const CreateProject = (navigation) => {
+export default function CreateProject ({navigation}) {
     return (
         <View style ={styles.ContainerCard}>
             <Text>create screen</Text>

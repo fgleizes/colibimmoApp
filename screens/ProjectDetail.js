@@ -7,16 +7,15 @@ import { CreateProject } from './CreateProjectScreen';
 
 const Stack = createNativeStackNavigator();
 
-export const Projects = () => {
-    return (
-        <NavigationContainer independent={true}>
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={ProjectsScreen} />
-            <Stack.Screen name="Details" component={DetailsScreen} />
-        </Stack.Navigator>
-        </NavigationContainer>
-    );
-}
+// export const Projects = () => {
+//     return (
+//         <NavigationContainer independent={true}>
+//         <Stack.Navigator initialRouteName="Home">
+//             <Stack.Screen name="Home" component={DetailsScreen} />
+//         </Stack.Navigator>
+//         </NavigationContainer>
+//     );
+// }
 
 export default function DetailsScreen({navigation,route}) {
   const {idProject} = route.params
@@ -25,12 +24,6 @@ export default function DetailsScreen({navigation,route}) {
   console.log(dataOptions)
   return (
     <>
-        {/* <NavigationContainer independent={true}>
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={DetailsScreen} />
-            <Stack.Screen name="Create" component={CreateProject} />
-        </Stack.Navigator>
-        </NavigationContainer> */}
       <Image style={styles.imgAmbiance} source={require ('../IMG/imgAppart.jpg')}/>
       <ScrollView style ={styles.ContainerCard}>
           {/* BOUTON RETOUR */}
@@ -43,7 +36,6 @@ export default function DetailsScreen({navigation,route}) {
                             type="MaterialIcons"
                             size={24}
                             color="#4B4B4B"
-                        
                         />
                     }
                     buttonStyle={styles.ButtonBack} title="" onPress={() => navigation.goBack() } 
@@ -52,36 +44,36 @@ export default function DetailsScreen({navigation,route}) {
             <View style={styles.ButtonsRight}>
                 <View>
                     <Button 
-                    icon={<Icon 
-                        name="create"
+                        icon={<Icon 
+                            name="create"
                             type="MaterialIcons"
                             size={24}
                             color="#4B4B4B"
-                        
-                        />}
+                        />
+                    }
                     buttonStyle={styles.ButtonUpdate} title="" onPress={() => navigation.goBack() } />
                 </View>
                 <View>                    
                     <Button 
-                    icon={<Icon 
-                        name="delete-outline"
+                        icon={<Icon 
+                            name="delete-outline"
                             type="MaterialIcons"
                             size={26}
                             color="#4B4B4B"
-                        
-                        />}
+                        />
+                    }
                     buttonStyle={styles.ButtonDelete} title="" onPress={() => navigation.goBack() } />
                 </View>
                 <View>
                     <Button 
-                    icon={<Icon 
-                        name="add"
+                        icon={<Icon 
+                            name="add"
                             type="MaterialIcons"
                             size={30}
                             color="#4B4B4B"
-                        
-                        />}
-                    buttonStyle={styles.ButtonCreate} title="" onPress={() => navigation.goBack()} />
+                        />
+                    }
+                    buttonStyle={styles.ButtonCreate} title="" onPress={() => navigation.navigate("Create")} />
                 </View>
             </View>
         </View>
@@ -106,7 +98,6 @@ export default function DetailsScreen({navigation,route}) {
                 type="feather"
                 size={24}
                 color="#fff"
-            
             />}
                 buttonStyle={styles.IconContact} 
                 type="clear"
