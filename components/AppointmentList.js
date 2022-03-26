@@ -1,21 +1,23 @@
 import React, { useState, useEffect,useContext } from 'react';
-import { View, StyleSheet,Text } from 'react-native';
+import { View, StyleSheet,Text,Dimensions } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
-import Moment, { months } from 'moment';
+import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { UserContext } from '../user-context';
+import { Button} from 'react-native-elements';
 
-
+// const window = Dimensions.get("window");
+// const screen = Dimensions.get("screen");
 
 const AppointmentList = () => {
   const [listAppointment, setListAppointment] = useState({})
   const context = useContext(UserContext)
   const [currentDate, setCurrentDate] = useState('')
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState();
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState(null)
+  const [items, setItems] = useState()
   
   useEffect(() => {
     var date = Moment(new Date()).format('DD MMM YYYY')
@@ -30,33 +32,49 @@ const AppointmentList = () => {
           }
         })
     }
+}, [context.token,listAppointment]);
+
+
+  return  (
     
-}, [context.token]);
-
-
-
-  return (
     <View>
+      
         <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
         <View style={styles.viewSeparator}></View>  
         <DropDownPicker
-      open={open}
-      value={value}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
-      theme="COLIBIMMO"
-    />
+        open={open}
+        value={value}
+        items={items}
+        setOpen={setOpen}
+        setValue={setValue}
+        setItems={setItems}
+        theme="COLIBIMMO"
+        />
 
       <FlatList
-      style={styles.flatlistAppointement}
+      contentContainerStyle={{marginBottom:'15%'}}
       data={listAppointment}
       renderItem={({ item }) => (
-         <View style={styles.table}>
-          <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null? 'flex' : 'none', 
+         <View style={{width:'91%',
+         display:Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+         flexDirection: 'row',
+         marginLeft:20,
+         marginRight:20,
+         marginBottom:15,
+         alignItems: 'center',
+         backgroundColor:'#FFFFFF',
+         borderRadius: 10,
+         shadowColor: "#000",
+         shadowOffset: {
+           width: 0,
+           height: 3,
+         },
+         shadowOpacity: 0.29,
+         shadowRadius: 4.65,
+         elevation: 7}}>
+          <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none', 
                         flexDirection: 'column',
                         alignItems: "center",}}>
             <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
@@ -64,51 +82,45 @@ const AppointmentList = () => {
           </View>
           <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
                       flexDirection: 'column',
+                      order: 1,
                       width:'55%',
                       paddingLeft: '6%',
                       paddingRight: '6%',
                       paddingTop: '3%',
                       paddingBottom: '3%',}}>
-            <Text style={styles.projectWordStyle}>François Quenard {item.id}</Text>
-            <Text style={styles.projectWordStyle}>12345</Text>
+            <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.person.lastname)}</Text>
+            <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.reference)}</Text>
           </View>
-          <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'10%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
-          < Icon style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none'}} name='eye'
-          type='feather'
-          color='#F27405'
-          size={26}
-          />
+          <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'5%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
+          <Button
+          onPress={() => {
+            
+          item.person_appointment_project.map(x=>alert(x.id_Person))        
+         }}
+                icon={{
+                  name: 'eye',
+                  type: 'feather',
+                  color:'#F27405',
+                  size:26,
+                  
+                }}
+                buttonStyle={{
+                  backgroundColor: 'transparent',
+                }}
+              
+              />
         </View>
       )}
       keyExtractor={itemAppointement => itemAppointement.id}
       />
     </View>  
-    
+
   );
+  
 }
 
 const styles = StyleSheet.create(
   {
-    
-    table:{
-      width:'91%',
-      display:'flex',
-      flexDirection: 'row',
-      marginLeft:20,
-      marginRight:20,
-      marginBottom:15,
-      alignItems: 'center',
-      backgroundColor:'#FFFFFF',
-      borderRadius: 10,
-      shadowColor: "#000",
-      shadowOffset: {
-        width: 0,
-        height: 3,
-      },
-      shadowOpacity: 0.29,
-      shadowRadius: 4.65,
-      elevation: 7,
-    },
     dateWordStyle:{
       fontSize:19,
       fontWeight: "bold",
@@ -117,9 +129,7 @@ const styles = StyleSheet.create(
     projectWordStyle:{
       fontSize:16
     },
-    flatlistAppointement:{
-      marginBottom:'15%'
-    },
+   
     textStyle:{
       fontSize:32,
     },
