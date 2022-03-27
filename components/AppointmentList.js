@@ -88,14 +88,14 @@ const AppointmentList = () => {
                       paddingRight: '6%',
                       paddingTop: '3%',
                       paddingBottom: '3%',}}>
-            <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.person.lastname)}</Text>
+            <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.person.lastname)} {item.person_appointment_project.map(x=>x.person.firstname)}</Text>
             <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.reference)}</Text>
           </View>
           <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'5%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
           <Button
           onPress={() => {
             
-          item.person_appointment_project.map(x=>alert(x.id_Person))        
+          item.person_appointment_project.map(x=>alert(x.person.id))        
          }}
                 icon={{
                   name: 'eye',
