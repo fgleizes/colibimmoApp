@@ -94,8 +94,7 @@ const AppointmentList = () => {
           <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'5%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
           <Button
           onPress={() => {
-            
-          item.person_appointment_project.map(x=>alert(x.person.id))        
+          alert(item.id)       
          }}
                 icon={{
                   name: 'eye',
