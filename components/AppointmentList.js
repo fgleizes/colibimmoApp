@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useContext } from 'react';
-import { View, StyleSheet,Text,Dimensions } from 'react-native';
+import { View, StyleSheet,Text } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
 import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
@@ -7,11 +7,11 @@ import { Icon } from 'react-native-elements/dist/icons/Icon';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { UserContext } from '../user-context';
 import { Button} from 'react-native-elements';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// const window = Dimensions.get("window");
-// const screen = Dimensions.get("screen");
-
-const AppointmentList = () => {
+export const AppointmentList = ({navigation}) => {
+  
   const [listAppointment, setListAppointment] = useState({})
   const context = useContext(UserContext)
   const [currentDate, setCurrentDate] = useState('')
@@ -23,8 +23,8 @@ const AppointmentList = () => {
     var date = Moment(new Date()).format('DD MMM YYYY')
     setCurrentDate(date)
     setItems(Moment.monthsShort().map(elem => ({label: elem, value: elem})))
-    
-    if(context.token) {
+    let show = true
+    if(context.token && show) {
       getAppointment(context.token)
         .then(response =>{
           if(response.status === 200){
@@ -93,9 +93,21 @@ const AppointmentList = () => {
           </View>
           <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'5%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
           <Button
-          onPress={() => {
-          alert(item.id)       
-         }}
+          
+          onPress={()=> navigation.navigate('AppointmentDetail',{itemPerson:{
+                                                                              'lastname': item.person_appointment_project.map(x=>x.person.lastname),
+                                                                              'firstname': item.person_appointment_project.map(x=>x.person.firstname),
+                                                                              'reference': item.person_appointment_project.map(x=>x.reference),
+                                                                              'subject': item.subject,
+                                                                              'address': item.person_appointment_project.map(x=>x.address.number)+ " " + item.person_appointment_project.map(x=>x.address.street),
+                                                                              'additional_address': item.person_appointment_project.map(x=>x.address.additional_address),
+                                                                              'building': item.person_appointment_project.map(x=>x.address.building),
+                                                                              'floor': item.person_appointment_project.map(x=>x.address.floor),
+                                                                              'residence': item.person_appointment_project.map(x=>x.address.residence),
+                                                                              'staircase': item.person_appointment_project.map(x=>x.address.staircase),
+                                                                              'hours': Moment(item.start_datetime).format('h:mm'),
+                                                                              'date': Moment(item.start_datetime).format('DD/MM/YYYY')
+                                                                            }})}
                 icon={{
                   name: 'eye',
                   type: 'feather',
@@ -117,6 +129,8 @@ const AppointmentList = () => {
   );
   
 }
+
+
 
 const styles = StyleSheet.create(
   {
@@ -148,5 +162,3 @@ const styles = StyleSheet.create(
   }
 );
 
-
-export default AppointmentList;

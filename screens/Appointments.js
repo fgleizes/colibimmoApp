@@ -1,12 +1,21 @@
 import * as React from 'react';
 import { View, Text } from "react-native";
-import AppointmentList from '../components/AppointmentList';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AppointmentList } from '../components/AppointmentList';
+import { DetailAppointment } from '../components/DetailAppointment';
 
-export default function AppointmentsScreen() {
+
+const Stack = createNativeStackNavigator();
+
+export const AppointmentsScreen =()=> {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text style={{ fontSize: 16, fontWeight: '700' }}>Appointments Screen</Text>
-      <AppointmentList />
-    </View>
+      <NavigationContainer independent={true}>
+          <Stack.Navigator initialRouteName="ListAppointment">
+              <Stack.Screen name="ListAppointment" component={AppointmentList} />
+              <Stack.Screen name="AppointmentDetail" component={DetailAppointment} />
+          </Stack.Navigator>
+      </NavigationContainer>
   );
 }
+

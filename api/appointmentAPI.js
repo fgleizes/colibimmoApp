@@ -15,16 +15,3 @@ export const getAppointment = (token) => {
         console.log(error.response)
     })
 }
-
-export const oneGetAppointment = (token, id) => {
-    const URL = `${API_URL}appointment/${id}`
-    return axios.get(URL, {
-        headers: { Authorization: `Bearer ${token}` }
-    }).then(response => {   
-        return response
-    })
-    .catch(error => {
-        console.log(error)
-        console.log(error.response)
-    })
-}
