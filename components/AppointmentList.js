@@ -32,6 +32,7 @@ export const AppointmentList = ({navigation}) => {
           }
         })
     }
+
 }, [context.token,listAppointment]);
 
 
