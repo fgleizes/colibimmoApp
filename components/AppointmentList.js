@@ -105,7 +105,9 @@ export const AppointmentList = ({navigation}) => {
                                                                               'building': item.person_appointment_project.map(x=>x.address.building),
                                                                               'floor': item.person_appointment_project.map(x=>x.address.floor),
                                                                               'residence': item.person_appointment_project.map(x=>x.address.residence),
+                                                                              'typeProject': item.person_appointment_project.map(x=>x.typeProject.name),
                                                                               'staircase': item.person_appointment_project.map(x=>x.address.staircase),
+                                                                              'phone': item.person_appointment_project.map(x=>x.person.phone),
                                                                               'hours': Moment(item.start_datetime).format('h:mm'),
                                                                               'date': Moment(item.start_datetime).format('DD/MM/YYYY')
                                                                             }})}
