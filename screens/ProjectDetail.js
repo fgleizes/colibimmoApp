@@ -19,9 +19,9 @@ export const Projects = () => {
 }
 
 export default function DetailsScreen({navigation,route}) {
-  const {idProject} = route.params
-  const dataOptions = idProject.option_project
-  const dataRooms = idProject.room_project
+  const {project} = route.params
+  const dataOptions = project.option_project
+  const dataRooms = project.room_project
   console.log(dataOptions)
   return (
     <>
@@ -90,16 +90,16 @@ export default function DetailsScreen({navigation,route}) {
         
         <View style={styles.detailInfoProject}>
             <View style={styles.têteDetailProject}>
-                <Text style={styles.RefDetailProject} >{idProject.reference}</Text>
-                <Text>{idProject.created_at}</Text>
+                <Text style={styles.RefDetailProject} >{project.reference}</Text>
+                <Text>{project.created_at}</Text>
             </View>
-            <Text>type : {idProject.id_Type_project.name}</Text>
-            <Text>status : {idProject.id_Statut_project.name}</Text>
-            <Text>{idProject.description}</Text>
+            <Text>type : {project.id_Type_project.name}</Text>
+            <Text>status : {project.id_Statut_project.name}</Text>
+            <Text>{project.description}</Text>
         </View>
         {/* CTA PAGE PROFIL CONTACT  */}
         <View style={styles.detailContactProject}>
-            <View style={styles.nomPrenom}><Text style={styles.prenom} >{idProject.id_Person.firstname} </Text><Text style={styles.nom}>{idProject.id_Person.lastname}</Text></View>
+            <View style={styles.nomPrenom}><Text style={styles.prenom} >{project.id_Person.firstname} </Text><Text style={styles.nom}>{project.id_Person.lastname}</Text></View>
             <Button 
            icon={<Icon 
             name="eye"
@@ -117,16 +117,16 @@ export default function DetailsScreen({navigation,route}) {
         <View style={styles.propertyInfoCta}>
             <View style={styles.propertyInfo}>
                 <View style={styles.typePropertyPrice}>
-                  <Text style={styles.typePropertyTxt}>Appartement T2</Text><Text>{idProject.area}m²</Text>
-                  <Text style={styles.pricePropertyTxt}>{idProject.price} €</Text>
+                  <Text style={styles.typePropertyTxt}>Appartement T2</Text><Text>{project.area}m²</Text>
+                  <Text style={styles.pricePropertyTxt}>{project.price} €</Text>
                 </View>
 
                 
-                <Text>{idProject.id_Address.number} {idProject.id_Address.street}</Text>
+                <Text>{project.id_Address.number} {project.id_Address.street}</Text>
 
                 <View style={styles.CpCity}>
-                  <Text style={styles.CP}>{idProject.id_Address.City.zip_code}</Text>
-                  <Text>{idProject.id_Address.City.name}</Text>
+                  <Text style={styles.CP}>{project.id_Address.City.zip_code}</Text>
+                  <Text>{project.id_Address.City.name}</Text>
                 </View>
 
                 <Text style={styles.roomOptionTitle}>Room</Text>
@@ -157,7 +157,7 @@ export default function DetailsScreen({navigation,route}) {
             <Button title="VOIR LES IMAGES" buttonStyle={styles.ctaShowImg}></Button>
         </View> 
         <View style={styles.gestionAgent}>
-            <Text style={styles.gestionAgentText}>Bien géré par {idProject.id_PersonAgent.firstname} {idProject.id_PersonAgent.lastname}</Text>
+            <Text style={styles.gestionAgentText}>Bien géré par {project.id_PersonAgent.firstname} {project.id_PersonAgent.lastname}</Text>
         </View>
         
         

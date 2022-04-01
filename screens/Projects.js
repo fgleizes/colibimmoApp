@@ -5,9 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
-import {getProjects, getMainImageProject} from '../api/projectAPI'
+import {getProjects, getMainImageProject} from '../api/ProjectAPI'
 import { CreateProject } from './CreateProjectScreen';
-
 
 const Stack = createNativeStackNavigator();
   
@@ -22,21 +21,23 @@ export const Projects = () => {
         </NavigationContainer>
     );
 }
-const RenderProjectCard = ({item,navigation,idProject}) => {
-    // const [mainImageProject, setmainImageProject] = useState()
+const RenderProjectCard = ({item,navigation}) => {
+    const [mainImageProject, setmainImageProject] = useState()
 
-    // useEffect(() => {
-    //     getMainImageProject(item.id)
-    //         .then(response => {
-    //             if (response.status === 200) {
-    //                 setmainImageProject(response.data)
-    //                 console.log(mainImageProject)
-    //             }
-    //         })
-    // }, []);
+    useEffect(() => {
+        if (item.id == 2) {
+            getMainImageProject(item.id).then(response => {
+                if (response.status === 200) {
+                    setmainImageProject(response.data)
+                }
+            })
+        }
+    }, []);
+
     return (
         <View style ={stylesListItem.Card}>   
-            <Image style={stylesListItem.Img} source={require ('../IMG/imgAppart.jpg')}/>
+            {/* <Image style={stylesListItem.Img} source={require ('../IMG/imgAppart.jpg')}/> */}
+            <Image style={stylesListItem.Img} source={mainImageProject ? { uri: `${mainImageProject}` } : require('../IMG/imgAppart.jpg') }/>
             <View style={stylesListItem.Info}>
                 <View style={stylesListItem.Txt}>
                     <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
@@ -45,17 +46,18 @@ const RenderProjectCard = ({item,navigation,idProject}) => {
                     <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">Appartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
                 </View>
                 {/* BOUTON TO DETAIL PROJECT  */}
-            <Button 
-            icon={<Icon 
-                name="eye"
-                    type="feather"
-                    size={24}
-                    color="#F27405"
-                
-                />}
+                <Button 
+                    icon={
+                        <Icon 
+                            name="eye"
+                            type="feather"
+                            size={24}
+                            color="#F27405"
+                        />
+                    }
                     buttonStyle={stylesListItem.Icon} 
                     type="clear"
-                    onPress={() => navigation.navigate('Details',{idProject : idProject})} 
+                    onPress={() => navigation.navigate('Details',{project : item})} 
                 />
             </View>
         </View>
@@ -70,24 +72,22 @@ const ProjectsScreen = ({navigation}) => {
             .then(response =>{
                 if(response.status === 200){
                     setListProjects(response.data)
-                    console.log(listProjects)
                 }
             })
     }, []);
 
-  return (
-        
+    return (
         <View style={stylesListItem.ContainerCard}>
-        {/* FILTRE CARD PROJECT */}
-        <Filtre></Filtre>
-        {/* LISTE CARDS PROJECT  */}
-        <FlatList  data={listProjects}
-            renderItem={({item}) => <RenderProjectCard navigation={navigation} item={item} idProject={item} />}
-            keyExtractor={item=>item.id}
-        />
+            {/* FILTRE CARD PROJECT */}
+            <Filtre></Filtre>
+            {/* LISTE CARDS PROJECT  */}
+            <FlatList  
+                data={listProjects}
+                renderItem={({item}) => <RenderProjectCard navigation={navigation} item={item} />}
+                keyExtractor={item=>item.id}
+            />
         </View>
-    
-  );
+    );
 }
 
 const stylesListItem = StyleSheet.create ({
