@@ -6,8 +6,34 @@ import { getProfile } from '../api/userAPI';
 // API URL FOR USER ROUTES
 const API_URL = "http://api.colibimmo.cda.ve.manusien-ecolelamanu.fr/public/"
 
-export const getProjects = (token) => {
-    const URL = `${API_URL}project/personAgent/`
+export const getProjectsAchat = (token) => {
+    const URL = `${API_URL}project/projectsByTypeByAuthAgent/1`
+    return axios.get(URL, {
+        headers: { Authorization: `Bearer ${token}` }
+    }).then(response => {   
+        return response
+    })
+    .catch(error => {
+        console.log(error)
+        console.log(error.response)
+    })
+}
+
+export const getProjectsVentes = (token) => {
+    const URL = `${API_URL}project/projectsByTypeByAuthAgent/2`
+    return axios.get(URL, {
+        headers: { Authorization: `Bearer ${token}` }
+    }).then(response => {   
+        return response
+    })
+    .catch(error => {
+        console.log(error)
+        console.log(error.response)
+    })
+}
+
+export const getProjectsLocations = (token) => {
+    const URL = `${API_URL}project/projectsByTypeByAuthAgent/3`
     return axios.get(URL, {
         headers: { Authorization: `Bearer ${token}` }
     }).then(response => {   

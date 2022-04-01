@@ -9,7 +9,9 @@ import DetailsScreen from './ProjectDetail'
 import {getProjects} from '../api/projectAPI'
 import CreateProject from './CreateProjectScreen';
 import {RenderProjectCard} from '../components/RenderProjectCard'
-import { ProjectsScreen } from '../components/ProjectsList';
+import { ProjectsScreenAchat } from '../components/ProjectsListAchats';
+import { ProjectsScreenVentes } from '../components/ProjectsListVentes';
+import { ProjectsScreenLocations } from '../components/ProjectsListLocations';
 import {DefaultContainer} from '../components/DefaultContainer'
 
 
@@ -19,8 +21,10 @@ export const Projects = () => {
     return (
 
             <NavigationContainer   independent={true}>
-            <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen  name="Home" component={ProjectsScreen} />
+            <Stack.Navigator initialRouteName="Achats">
+                <Stack.Screen  name="Achats" component={ProjectsScreenAchat} />
+                <Stack.Screen  name="Ventes" component={ProjectsScreenVentes} />
+                <Stack.Screen  name="Locations" component={ProjectsScreenLocations} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="Create" component={CreateProject} />
             </Stack.Navigator>
