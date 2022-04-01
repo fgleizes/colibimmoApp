@@ -1,20 +1,25 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
 import Filtre from './Filtre'
 import {getProjects} from '../api/projectAPI'
 import {RenderProjectCard} from './RenderProjectCard'
-
+import { UserContext } from '../user-context';
+import { getProfile } from '../api/userAPI';
 export const ProjectsScreen = ({navigation}) => {
     const [listProjects, setListProjects] = useState({})
-    const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjQxNzI1OCwiZXhwIjoxNjQyNDIwODU4LCJuYmYiOjE2NDI0MTcyNTgsImp0aSI6IkVLY3NGVGFaNlRiRjBBb1EiLCJzdWIiOjIzLCJwcnYiOiJhMzRmNDg4NzQ3YzQxZjFkMWEwMzU1ODQxNjYzZmFmMTkyNzAzYTJiIn0.vYJip9X97-01Tor6cKctBdnvTY4QpzD-ihZtX8my9ds"
+    const Context = useContext(UserContext);
+    const token = Context.token;
+    
 
+
+    
     useEffect(() => {
         if(token) {
             getProjects(token)
                 .then(response =>{
                     if(response.status === 200){
                         setListProjects(response.data)
-                        console.log(listProjects)
+                        
                     }
                 })
         }
