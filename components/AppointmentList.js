@@ -35,7 +35,6 @@ export const AppointmentList = ({navigation}) => {
 
 }, [context.token,listAppointment]);
 
-
   return  (
     
     <View>
@@ -43,7 +42,7 @@ export const AppointmentList = ({navigation}) => {
         <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
-        <View style={styles.viewSeparator}></View>  
+        <View style={styles.viewSeparator}></View> 
         <DropDownPicker
         open={open}
         value={value}
@@ -52,6 +51,7 @@ export const AppointmentList = ({navigation}) => {
         setValue={setValue}
         setItems={setItems}
         theme="COLIBIMMO"
+        placeholder="mois"
         />
 
       <FlatList
