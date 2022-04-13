@@ -43,6 +43,7 @@ export const AppointmentList = ({navigation}) => {
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
         <View style={styles.viewSeparator}></View> 
+        <View style={{display:"flex", flexDirection:"row", width:"75%"}}>
         <DropDownPicker
         open={open}
         value={value}
@@ -52,8 +53,24 @@ export const AppointmentList = ({navigation}) => {
         setItems={setItems}
         theme="COLIBIMMO"
         placeholder="mois"
+        onSelectItem={(item) => {
+          console.log(item);
+          
+        }}
         />
-
+        <View style={{width: "30%"}}>
+        <Button
+        title="Refresh"
+        buttonStyle={{
+          backgroundColor: '#F27405'
+        }}
+        onPress = {()=>{
+          let obj = Object.freeze(value);
+           obj = setValue(null)
+        }}
+        />
+        </View>
+        </View>
       <FlatList
       contentContainerStyle={{marginBottom:'15%'}}
       data={listAppointment}
@@ -81,6 +98,7 @@ export const AppointmentList = ({navigation}) => {
             <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
             <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('MMM') }</Text>
           </View>
+  
           <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
                       flexDirection: 'column',
                       order: 1,
