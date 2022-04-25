@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { View, Image,Text, StyleSheet,ScrollView } from "react-native";
-import { getProfile } from '../api/userAPI';
+import { getProfile } from './userAPI';
 
 // API URL FOR USER ROUTES
 const API_URL = "http://api.colibimmo.cda.ve.manusien-ecolelamanu.fr/public/"
