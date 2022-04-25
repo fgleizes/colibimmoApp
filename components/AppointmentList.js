@@ -53,10 +53,6 @@ export const AppointmentList = ({navigation}) => {
         setItems={setItems}
         theme="COLIBIMMO"
         placeholder="mois"
-        onSelectItem={(item) => {
-          console.log(item);
-          
-        }}
         />
         <View style={{width: "30%"}}>
         <Button
@@ -66,7 +62,7 @@ export const AppointmentList = ({navigation}) => {
         }}
         onPress = {()=>{
           let obj = Object.freeze(value);
-           obj = setValue(null)
+          obj = setValue(null)
         }}
         />
         </View>

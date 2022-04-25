@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useContext } from 'react';
-import { View, StyleSheet,Text,Linking} from 'react-native';
+import { View, StyleSheet,Text,Linking,Image} from 'react-native';
 import { Button } from 'react-native-elements';
 import { Icon } from 'react-native-elements/dist/icons/Icon';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -38,7 +38,12 @@ export const DetailAppointment = ({route,navigation}) => {
       };
     
     return (
-    <View style={{ flex: 1, alignItems: 'flex-start', justifyContent: 'center' }}>
+    <View style={{ flex: 0, alignItems: 'flex-start', justifyContent: 'center', marginTop:45 }}>
+      <Image
+        style={{position:'absolute',top:2,width: "100%",
+          height: "35%",}}
+        source={require('C:/wamp64/www/colibimmoApp/IMG/imgAppart.jpg')}
+      />
       <TouchableOpacity
            style= {[styles.button,{marginLeft:20}]}
            onPress={() => navigation.goBack()}>
