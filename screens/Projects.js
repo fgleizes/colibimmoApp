@@ -6,12 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
-<<<<<<< HEAD
-// import {getProjects} from './api/projectAPI'
-import { getProjects } from '../api/ProjectAPI';
-
-
-=======
 import {getProjects} from '../api/projectAPI'
 import CreateProject from './CreateProjectScreen';
 import {RenderProjectCard} from '../components/RenderProjectCard'
@@ -20,7 +14,6 @@ import { ProjectsScreenVentes } from '../components/ProjectsListVentes';
 import { ProjectsScreenLocations } from '../components/ProjectsListLocations';
 import {DefaultContainer} from '../components/DefaultContainer';
 import EditProject from './EditProject';
->>>>>>> 89ff8dae7244f73dee32480bd74c191302fea645
 
 const Stack = createNativeStackNavigator();
   

@@ -13,17 +13,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export const AppointmentList = ({navigation}) => {
   
   const [listAppointment, setListAppointment] = useState({})
-<<<<<<< HEAD
-  const context = useContext(UserContext)
-  const [currentDate, setCurrentDate] = useState('')
-  const [open, setOpen] = useState(false)
-  const [value, setValue] = useState(null)
-  const [items, setItems] = useState()
-  
-=======
 
   const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuY29saWJpbW1vLmNkYS52ZS5tYW51c2llbi1lY29sZWxhbWFudS5mclwvcHVibGljXC91c2VyXC9sb2dpbiIsImlhdCI6MTY0MjU4NDAzMiwiZXhwIjoxNjQyNTg3NjMyLCJuYmYiOjE2NDI1ODQwMzIsImp0aSI6Ild5T0NKSnU4RzgxOE9UeGsiLCJzdWIiOjIzLCJwcnYiOiJhMzRmNDg4NzQ3YzQxZjFkMWEwMzU1ODQxNjYzZmFmMTkyNzAzYTJiIn0.xHy4Q-HtrFopNm08MJ_UliKbD3Kagouecl3A9WhN7Xc"
->>>>>>> 89ff8dae7244f73dee32480bd74c191302fea645
   useEffect(() => {
     var date = Moment(new Date()).format('DD MMM YYYY')
     setCurrentDate(date)
