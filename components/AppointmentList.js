@@ -43,7 +43,7 @@ export const AppointmentList = ({navigation}) => {
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
         <View style={styles.viewSeparator}></View> 
-        <View style={{display:"flex", flexDirection:"row", width:"75%"}}>
+        <View style={{ paddingLeft:20, paddingBottom:20, display:"flex", flexDirection:"row", width:"75%"}}>
         <DropDownPicker
         open={open}
         value={value}
@@ -51,14 +51,15 @@ export const AppointmentList = ({navigation}) => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
-        theme="COLIBIMMO"
+        theme="LIGHT"
         placeholder="mois"
         />
-        <View style={{width: "30%"}}>
+        <View style={{width: "30%", alignItems:"center",}}>
         <Button
         title="Refresh"
         buttonStyle={{
-          backgroundColor: '#F27405'
+          backgroundColor: '#F27405',
+          height:50,
         }}
         onPress = {()=>{
           let obj = Object.freeze(value);
