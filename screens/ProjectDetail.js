@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { CreateProject } from './CreateProjectScreen';
 import { ModalContainer } from '../components/ModalContainer';
-
+import Moment  from 'moment';
 const Stack = createNativeStackNavigator();
 
 const ModalPoup = ({visible, children}) => {
@@ -70,7 +70,8 @@ export default function DetailsScreen({navigation,route}) {
             </TouchableOpacity>
           </View>
         </View>
-        <ModalContainer/>
+        <ModalContainer idProject={idProject.id}/>
+        
       </ModalPoup>  
       <Image style={styles.imgAmbiance} source={require ('../IMG/imgAppart.jpg')}/>
       <ScrollView style ={styles.ContainerCard}>
@@ -120,7 +121,7 @@ export default function DetailsScreen({navigation,route}) {
                             color="#4B4B4B"
                         />
                     }
-                    buttonStyle={styles.ButtonUpdate} title="" onPress={() => navigation.goBack() } />
+                    buttonStyle={styles.ButtonUpdate} title="" onPress={() => navigation.navigate("EditProject") } />
                 </View>
 
                 {/* BOUTON DELETE */}
@@ -145,7 +146,7 @@ export default function DetailsScreen({navigation,route}) {
         <View style={styles.detailInfoProject}>
             <View style={styles.têteDetailProject}>
                 <Text style={styles.RefDetailProject} >{idProject.reference}</Text>
-                <Text>{idProject.created_at}</Text>
+                <Text>{Moment(idProject.created_at).format("Do MMM YY") }</Text>
             </View>
             <Text>type : {idProject.type_Project.name}</Text>
             <Text>status : {idProject.id_Statut_project.name}</Text>
@@ -165,7 +166,7 @@ export default function DetailsScreen({navigation,route}) {
                 />}
                     buttonStyle={styles.IconContact} 
                     type="clear"
-                    // onPress={() => navigation.navigate('ProfilClient')} 
+              
                 />
             </View>
             <View style={styles.ButtonNotesView}>
@@ -326,6 +327,7 @@ const styles = StyleSheet.create ({
           width: 0,
           height: 4,
         },
+        minHeight:110,
         shadowOpacity: 1,
         shadowRadius: 20,
         elevation: 5,

@@ -12,8 +12,8 @@ import {RenderProjectCard} from '../components/RenderProjectCard'
 import { ProjectsScreenAchat } from '../components/ProjectsListAchats';
 import { ProjectsScreenVentes } from '../components/ProjectsListVentes';
 import { ProjectsScreenLocations } from '../components/ProjectsListLocations';
-import {DefaultContainer} from '../components/DefaultContainer'
-
+import {DefaultContainer} from '../components/DefaultContainer';
+import EditProject from './EditProject';
 
 const Stack = createNativeStackNavigator();
   
@@ -27,6 +27,7 @@ export const Projects = () => {
                 <Stack.Screen  name="Locations" component={ProjectsScreenLocations} />
                 <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="Create" component={CreateProject} />
+                <Stack.Screen name="EditProject" component={EditProject} />
             </Stack.Navigator>
             </NavigationContainer>
 

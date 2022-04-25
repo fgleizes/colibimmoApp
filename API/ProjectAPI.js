@@ -18,6 +18,7 @@ export const getProjectsAchat = (token) => {
         console.log(error.response)
     })
 }
+ 
 
 export const getProjectsVentes = (token) => {
     const URL = `${API_URL}project/projectsByTypeByAuthAgent/2`
@@ -44,3 +45,17 @@ export const getProjectsLocations = (token) => {
         console.log(error.response)
     })
 }
+
+export const getNotesProject = (token,idNote) => {
+    const URL = `${API_URL}note/showByProject/${idNote}`
+    return axios.get(URL,{
+        headers: { Authorization: `Bearer ${token}` }
+    }).then(response => {   
+        return response
+    })
+    .catch(error => {
+        console.log(error)
+        console.log(error.response)
+    })
+}
+
