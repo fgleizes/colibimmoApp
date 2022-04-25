@@ -51,7 +51,14 @@ export const AppointmentList = ({navigation}) => {
         setOpen={setOpen}
         setValue={setValue}
         setItems={setItems}
-        theme="COLIBIMMO"
+        theme="LIGHT"
+        style={{
+          width: '31%',
+          alignItems:'center',
+          borderColor: '#B4B4B4',
+          backgroundColor:'E5E5E5',
+          color:'6B6B6B'
+        }}
         placeholder="mois"
         />
         <View style={{width: "30%"}}>
