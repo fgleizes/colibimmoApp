@@ -59,3 +59,26 @@ export const getNotesProject = (token,idNote) => {
     })
 }
 
+export const getProjects = () => {
+    const URL = `${API_URL}project`
+    return axios.get(URL)
+        .then(response => {   
+            return response
+        })
+        .catch(error => {
+            console.log(error)
+            console.log(error.response)
+        })
+}
+
+export const getMainImageProject = (id_Project) => {
+    const URL = `${API_URL}project/mainImage/${id_Project}`
+    return axios.get(URL)
+        .then(response => {
+            return response
+        })
+        .catch(error => {
+            console.log(error)
+            console.log(error.response)
+        })
+}

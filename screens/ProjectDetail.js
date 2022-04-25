@@ -183,8 +183,8 @@ export default function DetailsScreen({navigation,route}) {
         <View style={styles.propertyInfoCta}>
             <View style={styles.propertyInfo}>
                 <View style={styles.typePropertyPrice}>
-                  <Text style={styles.typePropertyTxt}>Appartement T2</Text><Text>{idProject.area}m²</Text>
-                  <Text style={styles.pricePropertyTxt}>{idProject.price} €</Text>
+                  <Text style={styles.typePropertyTxt}>Appartement T2</Text><Text>{project.area}m²</Text>
+                  <Text style={styles.pricePropertyTxt}>{project.price} €</Text>
                 </View>
 
                 
