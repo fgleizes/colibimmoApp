@@ -4,7 +4,7 @@ import axios from "axios"
 const API_URL = "http://api.colibimmo.cda.ve.manusien-ecolelamanu.fr/public/user/"
 
 export const login = (email, mdp) => {
-  const URL = `${API_URL}login?mail=${email}&password=${mdp}`
+  const URL = `${API_URL}loginMobile?mail=${email}&password=${mdp}`
   return axios.get(URL)
     .then(response => {
       return response
@@ -45,7 +45,9 @@ export const getProfile = (token) => {
   const URL = `${API_URL}me`
   return axios.get(URL, { headers: { Authorization: `Bearer ${token}` } })
     .then(response => {
+      
       return response
+      
     })
     .catch(error => {
       console.log(error)

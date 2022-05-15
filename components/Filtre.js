@@ -1,12 +1,14 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Directions } from 'react-native-gesture-handler';
-import { Icon } from 'react-native-elements'
+import { Icon, Button } from 'react-native-elements'
 import { enumDeclaration } from '@babel/types';
 
-const Filtre = () => (
+ const Filtre = ({navigation}) => (
     <View style={stylesFiltre.Filtre}>
-        <Text style={stylesFiltre.Txt1}>achat</Text><Text style={stylesFiltre.Txt}>ventes</Text><Text style={stylesFiltre.Txt}>location</Text>
+        <Button titleStyle={{color:'#F27405',}} buttonStyle={stylesFiltre.ButtonFiltre} title="Achats" onPress={() => navigation.navigate('Achats')}></Button>
+        <Button titleStyle={{color:'#F27405',}} buttonStyle={stylesFiltre.ButtonFiltre} title="Ventes" onPress={() => navigation.navigate('Ventes')}></Button>
+        <Button titleStyle={{color:'#F27405',}} buttonStyle={stylesFiltre.ButtonFiltre} title="Locations" onPress={() => navigation.navigate('Locations')}></Button>
     </View>
 );
 
@@ -19,28 +21,17 @@ const stylesFiltre =StyleSheet.create ({
         justifyContent: 'space-around'
     },
 
-    Txt:{
-        padding:5,
-        paddingRight:15,
-        paddingLeft:15,
-        fontSize:14,
-        color:'#F27405',
-        backgroundColor:'#F3E7DC',
-        borderRadius:50,
-        fontWeight:'bold',
+
         
+    
+    ButtonFiltre:{
+        width:90,
+        backgroundColor:'#fff',
+        borderRadius:40,
+        borderWidth:1,
+        borderColor:'#F27405',
+        color:'#F27405',
     },
-    Txt1:{
-        color:'#fff',
-        padding:5,
-        paddingRight:15,
-        paddingLeft:15,
-        fontSize:14,
-        backgroundColor:'#F27405',
-        borderRadius:50,
-        fontWeight:'bold',
-        // alignSelf:flex-end,
-    }
 
 })
 export default Filtre;
