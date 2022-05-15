@@ -7,9 +7,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Icon, Button } from 'react-native-elements'
 import DetailsScreen from './ProjectDetail'
 // import {getProjects} from './api/projectAPI'
-import { getProjects } from '../api/ProjectAPI';
-
-
 import {getProjects} from '../api/projectAPI'
 import CreateProject from './CreateProjectScreen';
 import {RenderProjectCard} from '../components/RenderProjectCard'
