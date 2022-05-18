@@ -8,7 +8,6 @@ export default function HomeScreen() {
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      {/* <Text style={{ fontSize: 16, fontWeight: '700' }}>Home Screen</Text> */}
       <Text style={{ fontSize: 32, fontWeight: '700' }}>Bienvenue</Text>
       { contextUser.isLoggedIn && 
         <Text style={{ fontSize: 28, fontWeight: '700' }}>{`${contextUser.user.firstname} ${contextUser.user.lastname}`}</Text>

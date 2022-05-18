@@ -40,7 +40,6 @@ export default function LoginScreen({ navigation }) {
 var styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
-    // justifyContent: 'center',
     paddingTop: 200,
     paddingHorizontal: 10
   },

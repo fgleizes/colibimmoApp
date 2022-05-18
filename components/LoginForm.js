@@ -48,17 +48,12 @@ export const LoginForm = ({setIsLogin}) => {
       setMailErrorMsg("")
       mailFormatIsValid = true
     }
-    // Au moins 6 caractères, une majuscule, un chiffre :
-    // var passwordFormat = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/
     if (password === "") {
       setPasswordErrorMsg("Le mot de passe est obligatoire.")
     } else {
       setPasswordErrorMsg("")
       passwordFormatIsValid = true
     }
-    // else if (!password.match(passwordFormat)) {
-    //   setPasswordErrorMsg("Au moins 6 caractères, une majuscule, un chiffre")
-    // }
     if (mailFormatIsValid && passwordFormatIsValid) {
       handleSubmit(mail,password)
     }
@@ -71,8 +66,6 @@ export const LoginForm = ({setIsLogin}) => {
         containerStyle={styles.containerInput}
         label="Votre adresse email :"
         labelStyle={styles.label}
-        // placeholder="Saisissez votre email"
-        // placeholderTextColor={styles.input}
         errorMessage={mailErrorMsg}
         renderErrorMessage={true}
         leftIcon={{ type: "material", name: "alternate-email", color: "#fbfbfb" }}
@@ -86,8 +79,6 @@ export const LoginForm = ({setIsLogin}) => {
         containerStyle={styles.containerInput}
         label="Votre mot de passe :"
         labelStyle={styles.label}
-        // placeholder="Saisissez votre mot de passe"
-        // placeholderTextColor={{ color: "#fbfbfb"}}
         errorMessage={passwordErrorMsg}
         leftIcon={{ type: "material", name: "lock-outline", color: "#fbfbfb" }}
         rightIcon={{ type: "material-community", name: showPassword ? "eye-off-outline" : "eye-outline", size: 24, color: "#fbfbfb", onPress: togglePassword }}

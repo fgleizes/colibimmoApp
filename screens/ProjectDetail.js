@@ -63,10 +63,6 @@ export default function DetailsScreen({navigation,route}) {
                             size={24}
                             color="#4B4B4B"
                         />
-            {/* <Image
-                source={require('../IMG/x.png')}
-                style={{height: 30, width: 30}}
-              /> */}
             </TouchableOpacity>
           </View>
         </View>

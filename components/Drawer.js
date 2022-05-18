@@ -68,28 +68,6 @@ export const MyDrawer = () => {
           }
         />
       )}
-      {/* {contextUser.isLoggedIn ? (
-          <>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Appointments" component={AppointmentsScreen} />
-            <Drawer.Screen name="Profile" component={ProfileScreen} />
-            <Drawer.Screen name="Logout" component={LogoutScreen} />
-            <Drawer.Screen name="Settings" component={SettingsScreen} />
-          </>
-        ) : (
-          <>
-            <Drawer.Screen name="Home" component={HomeScreen} />
-            <Drawer.Screen name="Login" component={LoginScreen} />
-            <Drawer.Screen name="Settings" component={SettingsScreen} />
-          </>
-        )
-      } */}
-      {/* <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="Appointments" component={AppointmentsScreen} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="Login" component={LoginScreen} />
-      <Drawer.Screen name="Logout" component={LogoutScreen} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} /> */}
     </Drawer.Navigator>
   );
 }
@@ -121,9 +99,6 @@ export function CustomDrawerContent(props) {
             <Text>{`${contextUser.user.firstname} ${contextUser.user.lastname}`}</Text>
           </View>
         }
-        {/* <View style={styles.container}>
-          <Text>{contextUser.isLoggedIn ? `${contextUser.user.firstname} ${contextUser.user.lastname}` : 'Connectez ou Inscrivez vous'}</Text>
-        </View> */}
         <DrawerItemList state={newState} {...rest} />
       </DrawerContentScrollView>
     </React.Fragment>
