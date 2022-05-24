@@ -40,8 +40,7 @@ export const AppointmentList = ({navigation}) => {
   return  (
     
     <View>
-      
-        <View style={styles.viewDate}>
+       <View style={styles.viewDate}>
           <Text style={styles.textStyle}>{currentDate}</Text>
         </View>
         <View style={styles.viewSeparator}></View> 
