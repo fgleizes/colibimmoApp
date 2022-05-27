@@ -11,7 +11,9 @@ export function RenderProjectCard({item,navigation,idProject})  {
                 <View style={stylesListItem.Txt}>
                     <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
                     <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.person.firstname}</Text><Text name="nom">{item.person.lastname}</Text></View>
-                    <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.address.city.zip_code}</Text><Text name="adresseVille">{item.address.city.name}</Text></View>
+                    { item.address &&
+                        <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.address.city.zip_code}</Text><Text name="adresseVille">{item.address.city.name}</Text></View>
+                    }
                     <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">ppartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
                 </View>
                 {/* BOUTON TO DETAIL PROJECT  */}

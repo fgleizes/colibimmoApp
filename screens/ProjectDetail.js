@@ -187,13 +187,15 @@ export default function DetailsScreen({navigation,route}) {
                   <Text style={styles.pricePropertyTxt}>{idProject.price} €</Text>
                 </View>
 
-                
-                <Text>{idProject.address.number} {idProject.address.street}</Text>
-
-                <View style={styles.CpCity}>
-                  <Text style={styles.CP}>{idProject.address.city.zip_code}</Text>
-                  <Text>{idProject.address.city.name}</Text>
-                </View>
+                {idProject.address &&
+                    <Text>{idProject.address.number} {idProject.address.street}</Text>
+                }
+                {idProject.address &&
+                    <View style={styles.CpCity}>
+                    <Text style={styles.CP}>{idProject.address.city.zip_code}</Text>
+                    <Text>{idProject.address.city.name}</Text>
+                    </View>
+                }
 
                 <Text style={styles.roomOptionTitle}>Room</Text>
 
