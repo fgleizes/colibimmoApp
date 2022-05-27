@@ -11,11 +11,11 @@ import SigninScreen from '../screens/Signin';
 import LogoutScreen from '../screens/Logout';
 import ProfileScreen from '../screens/Profile';
 import SettingsScreen from '../screens/Settings';
-import AppointmentsScreen from '../screens/Appointments';
 import { Projects } from "../screens/Projects";
 
 import { DrawerItems } from '../constants/DrawerItems';
 import { UserContext } from "../user-context";
+import { AppointmentsScreen } from '../screens/Appointments';
 
 const Drawer = createDrawerNavigator();
 const loggedItems = ['Projects', 'Appointments', 'Profile', 'Logout'];
