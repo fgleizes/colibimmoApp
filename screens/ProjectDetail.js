@@ -44,8 +44,6 @@ const ModalPoup = ({visible, children}) => {
   };
 
 export default function DetailsScreen({navigation,route}) {
-
-    
   const [visible, setVisible] = React.useState(false);
   const {idProject} = route.params
   const dataOptions = idProject.option_project
@@ -58,12 +56,15 @@ export default function DetailsScreen({navigation,route}) {
           <View style={styles.header}>
             <TouchableOpacity onPress={() => setVisible(false)}>
             <Icon 
-                            name="close"
-                            type="MaterialIcons"
-                            size={24}
-                            color="#4B4B4B"
-                        />
+                name="close"
+                type="MaterialIcons"
+                size={24}
+                color="#4B4B4B"
+            />
             </TouchableOpacity>
+          </View>
+          <View>
+              <Text>Voir les notes</Text>
           </View>
         </View>
         <ModalContainer idProject={idProject.id}/>
@@ -96,12 +97,11 @@ export default function DetailsScreen({navigation,route}) {
                             type="MaterialIcons"
                             size={30}
                             color="white"
-                        />
-                        
-                    }
-                    
-                    buttonStyle={styles.ButtonRDV} title="" onPress={() => navigation.navigate("Appointment")}>
-                        
+                        />}
+                        buttonStyle={styles.ButtonRDV} 
+                        title="" 
+                        // onPress={() => navigation.navigate("Appointment")}
+                    >
                     </Button>
                     <Text style={styles.DateRdvButton}>
                         04/04/2022
@@ -184,12 +184,16 @@ export default function DetailsScreen({navigation,route}) {
                 </View>
 
                 
-                <Text>{idProject.address.number} {idProject.address.street}</Text>
+                { idProject.address &&
+                    <Text>{idProject.address.number} {idProject.address.street}</Text>
+                }
 
-                <View style={styles.CpCity}>
-                  <Text style={styles.CP}>{idProject.address.city.zip_code}</Text>
-                  <Text>{idProject.address.city.name}</Text>
-                </View>
+                { idProject.address &&
+                    <View style={styles.CpCity}>
+                    <Text style={styles.CP}>{idProject.address.city.zip_code}</Text>
+                    <Text>{idProject.address.city.name}</Text>
+                    </View>
+                }
 
                 <Text style={styles.roomOptionTitle}>Room</Text>
 
@@ -205,8 +209,8 @@ export default function DetailsScreen({navigation,route}) {
 
                 <View style={styles.listOptionProperty}>
                     
-                    {dataOptions.map(option => 
-                      <Text>{option.name} | </Text>
+                    {dataOptions.map((option, key) => 
+                      <Text key={key}>{option.name} | </Text>
                     )}
                 </View>
             </View>

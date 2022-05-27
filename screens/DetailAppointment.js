@@ -42,7 +42,8 @@ export const DetailAppointment = ({route,navigation}) => {
       <Image
         style={{position:'absolute',top:2,width: "100%",
           height: "35%",}}
-        source={require('C:/wamp64/www/colibimmoApp/IMG/imgAppart.jpg')}
+        // source={require('C:/wamp64/www/colibimmoApp/IMG/imgAppart.jpg')}
+        source={require('./../IMG/imgAppart.jpg')}
       />
       <TouchableOpacity
            style= {[styles.button,{marginLeft:20}]}

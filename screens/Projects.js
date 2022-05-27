@@ -1,25 +1,17 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
-import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
-import Filtre from '../components/Filtre'
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Icon, Button } from 'react-native-elements'
-import DetailsScreen from './ProjectDetail'
-import {getProjects} from '../api/projectAPI'
+import DetailsScreen from './ProjectDetail';
 import CreateProject from './CreateProjectScreen';
-import {RenderProjectCard} from '../components/RenderProjectCard'
 import { ProjectsScreenAchat } from '../components/ProjectsListAchats';
 import { ProjectsScreenVentes } from '../components/ProjectsListVentes';
 import { ProjectsScreenLocations } from '../components/ProjectsListLocations';
-import {DefaultContainer} from '../components/DefaultContainer';
 import EditProject from './EditProject';
 
 const Stack = createNativeStackNavigator();
   
 export const Projects = () => {
     return (
-
             <NavigationContainer   independent={true}>
             <Stack.Navigator initialRouteName="Achats">
                 <Stack.Screen  name="Achats" component={ProjectsScreenAchat} />
@@ -28,6 +20,7 @@ export const Projects = () => {
                 <Stack.Screen name="Details" component={DetailsScreen} />
                 <Stack.Screen name="Create" component={CreateProject} />
                 <Stack.Screen name="EditProject" component={EditProject} />
+                {/* <Stack.Screen name="Appointments" component={} /> */}
             </Stack.Navigator>
             </NavigationContainer>
 

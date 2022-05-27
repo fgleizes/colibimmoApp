@@ -14,18 +14,15 @@ import { enumDeclaration } from '@babel/types';
 
 const stylesFiltre =StyleSheet.create ({
     Filtre:{
-        fontSize:14,
+        fontSize:12,
         flexDirection:'row',
         marginBottom:25,
         marginTop:5,
-        justifyContent: 'space-around'
+        justifyContent: 'space-between'
     },
 
-
-        
-    
     ButtonFiltre:{
-        width:90,
+        width:100,
         backgroundColor:'#fff',
         borderRadius:40,
         borderWidth:1,

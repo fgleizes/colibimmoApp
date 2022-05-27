@@ -1,6 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import axios from 'axios';
-import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
+import React from 'react';
+import { View, Image,Text, StyleSheet } from "react-native";
 import { Icon, Button } from 'react-native-elements'
 
 export function RenderProjectCard({item,navigation,idProject})  {
@@ -11,18 +10,21 @@ export function RenderProjectCard({item,navigation,idProject})  {
                 <View style={stylesListItem.Txt}>
                     <Text style={stylesListItem.Ref} name="referenceProjet">{item.reference}</Text>
                     <View style={stylesListItem.nomPrenom} name="nomPrenom"><Text style={{marginRight:5}} name="prenom">{item.person.firstname}</Text><Text name="nom">{item.person.lastname}</Text></View>
-                    <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.address.city.zip_code}</Text><Text name="adresseVille">{item.address.city.name}</Text></View>
-                    <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">ppartement T2</Text><Text name="propertyArea">{item.area}</Text></View>
+                    { item.address && 
+                        <View style={stylesListItem.adresse} name="adresse"><Text style={{marginRight:5}} name="adresseCodePostal">{item.address.city.zip_code}</Text><Text name="adresseVille">{item.address.city.name}</Text></View>
+                    }
+                    <View style={stylesListItem.propertyInfo} name="propertyInfo"><Text style={{marginRight:5}} name="typeProperty">{/*item.type.property.name*/}Appartement</Text><Text name="propertyArea">{item.area} m2</Text></View>
                 </View>
                 {/* BOUTON TO DETAIL PROJECT  */}
-            <Button 
-            icon={<Icon 
-                name="eye"
-                    type="feather"
-                    size={24}
-                    color="#F27405"
-                
-                />}
+                <Button 
+                    icon={
+                        <Icon 
+                            name="eye"
+                            type="feather"
+                            size={24}
+                            color="#F27405"
+                        />
+                    }
                     buttonStyle={stylesListItem.Icon} 
                     type="clear"
                     onPress={() => navigation.navigate('Details',{idProject : idProject})} 
@@ -45,10 +47,10 @@ export function RenderProjectCard({item,navigation,idProject})  {
             shadowColor: "#000",
             shadowOffset: {
               width: 0,
-              height: 4,
+              height: 3,
             },
-            shadowOpacity: 1,
-            shadowRadius: 20,
+            shadowOpacity: 0.2,
+            shadowRadius: 2,
             elevation: 5,
             borderRadius:10,
             maxHeight:150,

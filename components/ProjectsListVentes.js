@@ -42,8 +42,9 @@ return (
 
 const stylesListItem = StyleSheet.create ({
     ContainerCard:{
-        paddingTop:70,
+        paddingTop: 35,
         paddingBottom:60,
         padding:20,
+        minHeight: 600
     }
 })

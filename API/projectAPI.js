@@ -18,7 +18,6 @@ export const getProjectsAchat = (token) => {
         console.log(error.response)
     })
 }
- 
 
 export const getProjectsVentes = (token) => {
     const URL = `${API_URL}project/projectsByTypeByAuthAgent/2`

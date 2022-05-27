@@ -3,7 +3,6 @@ import { View, Image,Text, StyleSheet,ScrollView,FlatList } from "react-native";
 import Filtre from './Filtre'
 import {getNotesProject} from '../api/projectAPI'
 import { UserContext } from '../user-context';
-import { Divider } from 'react-native-paper';
 import Moment  from 'moment';
 
 

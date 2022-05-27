@@ -30,40 +30,26 @@ export default function EditProject ({navigation}) {
                 </View>
                 
             </View>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ fontSize: 16, fontWeight: '700' }}>Edit project</Text>
+            </View>
         </ScrollView>
     );
 }
 
-
-    const styles = StyleSheet.create ({
-        ContainerForm:{
-            paddingTop:70,
-            padding:20,
-        },
-    
-    //Icon header
-    
-    
-        
-    
-    
-        buttonLeft:{
-            flexDirection:'row',
-        },
-    
-        
-        
-    
-        
-    
-        ButtonBack:{
-            backgroundColor:'#fff',
-            borderRadius:50,
-            width:50,
-            height:50,
-            paddingLeft:15,
-        },
-    
-      
-    
+const styles = StyleSheet.create ({
+    ContainerForm:{
+        paddingTop:70,
+        padding:20
+    },
+    buttonLeft:{
+        flexDirection:'row',
+    },
+    ButtonBack:{
+        backgroundColor:'#fff',
+        borderRadius:50,
+        width:50,
+        height:50,
+        paddingLeft:15,
+    },
 })

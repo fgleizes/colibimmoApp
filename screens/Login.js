@@ -6,11 +6,11 @@ import LinearGradient from 'react-native-linear-gradient';
 export default function LoginScreen({ navigation }) {
   const [isLoggin, setIsLogin] = useState(null)
 
-  useEffect(() => {
-    if(isLoggin) {
-      navigation.navigate("Home");
-    }
-  }, [isLoggin]);
+  // useEffect(() => {
+  //   if(isLoggin) {
+  //     navigation.navigate("Home");
+  //   }
+  // }, [isLoggin]);
 
   useEffect(() => {
     if (isLoggin) {
