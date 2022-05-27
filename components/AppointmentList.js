@@ -44,65 +44,118 @@ export const AppointmentList = ({navigation}) => {
       <View style={styles.viewDate}>
         <Text style={styles.textStyle}>{currentDate}</Text>
       </View>
-
       <View style={styles.viewSeparator}></View> 
-        <View style={{display:"flex", flexDirection:"row", width:"75%"}}>
-          <DropDownPicker
-            open={open}
-            value={value}
-            items={items}
-            setOpen={setOpen}
-            setValue={setValue}
-            setItems={setItems}
-            theme="LIGHT"
-            style={{
-              width: '31%',
-              alignItems:'center',
-              borderColor: '#B4B4B4',
-              backgroundColor:'E5E5E5',
-              color:'6B6B6B'
-            }}
-            placeholder="mois"
-          />
-          <View style={{width: "30%"}}>
+        
+      <View style={{ paddingLeft: 20, paddingBottom: 20, display: "flex", flexDirection: "row", width: "75%" }}>
+        <DropDownPicker
+          open={open}
+          value={value}
+          items={items}
+          setOpen={setOpen}
+          setValue={setValue}
+          setItems={setItems}
+          theme="LIGHT"
+          placeholder="mois"
+        />
+        <View style={{ width: "30%", alignItems: "center", }}>
           <Button
             title="Refresh"
             buttonStyle={{
-              backgroundColor: '#F27405'
+              backgroundColor: '#F27405',
+              height: 50,
             }}
-            onPress = {()=>{
+            onPress={() => {
               let obj = Object.freeze(value);
               obj = setValue(null)
             }}
           />
         </View>
       </View>
+      <FlatList
+        contentContainerStyle={{ marginBottom: '15%' }}
+        data={listAppointment}
+        renderItem={({ item }) => (
+          <View style={{
+            width: '91%',
+            display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+            flexDirection: 'row',
+            marginLeft: 20,
+            marginRight: 20,
+            marginBottom: 15,
+            alignItems: 'center',
+            backgroundColor: '#FFFFFF',
+            borderRadius: 10,
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 3,
+            },
+            shadowOpacity: 0.29,
+            shadowRadius: 4.65,
+            elevation: 7
+          }}>
+            <View style={{
+              display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+              flexDirection: 'column',
+              alignItems: "center",
+            }}>
+              <Text style={styles.dateWordStyle}>{Moment(item.start_datetime).format('D')}</Text>
+              <Text style={styles.dateWordStyle}>{Moment(item.start_datetime).format('MMM')}</Text>
+            </View>
+
+            <View style={{
+              display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+              flexDirection: 'column',
+              order: 1,
+              width: '55%',
+              paddingLeft: '6%',
+              paddingRight: '6%',
+              paddingTop: '3%',
+              paddingBottom: '3%',
+            }}>
+              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x => x.person.lastname)} {item.person_appointment_project.map(x => x.person.firstname)}</Text>
+              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x => x.reference)}</Text>
+            </View>
+            <Text style={{ display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none', paddingRight: '5%' }}>{Moment(item.start_datetime).format('h:mm')}</Text>
+            <Button
+              title="Refresh"
+              buttonStyle={{
+                backgroundColor: '#F27405'
+              }}
+              onPress={() => {
+                let obj = Object.freeze(value);
+                obj = setValue(null)
+              }}
+            />
+          </View>
+        )}
+      />
       
       {listAppointment &&
         <FlatList
-        contentContainerStyle={{marginBottom:'15%'}}
-        data={listAppointment}
-        renderItem={({ item }) => (
-          <View 
-            style={{
-              width:'91%',
-              display:Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
-              flexDirection: 'row',
-              marginLeft:20,
-              marginRight:20,
-              marginBottom:15,
-              alignItems: 'center',
-              backgroundColor:'#FFFFFF',
-              borderRadius: 10,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 3,
-              },
-              shadowOpacity: 0.29,
-              shadowRadius: 4.65,
-              elevation: 7
-            }}
+          contentContainerStyle={{marginBottom:'15%'}}
+          data={listAppointment}
+          renderItem={({ item }) => (
+            <View 
+              style={{
+                width:'91%',
+                display:Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
+                flexDirection: 'row',
+                marginLeft:20,
+                marginRight:20,
+                marginBottom:15,
+                alignItems: 'center',
+                backgroundColor:'#FFFFFF',
+                borderRadius: 10,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 3,
+                },
+                shadowOpacity: 0.29,
+                shadowRadius: 4.65,
+                elevation: 7
+              }}
           >
             <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none', flexDirection: 'column', alignItems: "center"}}>
               <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
