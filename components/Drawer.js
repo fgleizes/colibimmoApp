@@ -11,11 +11,11 @@ import SigninScreen from '../screens/Signin';
 import LogoutScreen from '../screens/Logout';
 import ProfileScreen from '../screens/Profile';
 import SettingsScreen from '../screens/Settings';
-import { Projects } from "../screens/Projects";
+import ProjectsScreen from "../screens/Projects";
+import AppointmentsScreen from '../screens/Appointments';
 
 import { DrawerItems } from '../constants/DrawerItems';
 import { UserContext } from "../user-context";
-import { AppointmentsScreen } from '../screens/Appointments';
 
 const Drawer = createDrawerNavigator();
 const loggedItems = ['Projects', 'Appointments', 'Profile', 'Logout'];
@@ -48,7 +48,7 @@ export const MyDrawer = () => {
               />
             ,
             headerShown: true,
-            header: ({ navigation, route, options }) => {
+            header: ({ route, options }) => {
               const title = getHeaderTitle(options, route.name);
 
               return (
@@ -58,7 +58,7 @@ export const MyDrawer = () => {
           }}
           component={
             drawer.name === 'Appointments' ? AppointmentsScreen
-              : drawer.name === 'Projects' ? Projects
+              : drawer.name === 'Projects' ? ProjectsScreen
                 : drawer.name === 'Profile' ? ProfileScreen
                   : drawer.name === 'Settings' ? SettingsScreen
                     : drawer.name === 'Login' ? LoginScreen
