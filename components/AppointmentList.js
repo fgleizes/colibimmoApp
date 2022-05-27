@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useContext } from 'react';
 import { View, StyleSheet,Text } from 'react-native';
 import { getAppointment } from '../api/appointmentAPI';
-import Moment, { months } from 'moment';
+import Moment from 'moment';
 import { FlatList } from 'react-native-gesture-handler';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { UserContext } from '../user-context';
@@ -24,14 +24,11 @@ export const AppointmentList = ({navigation}) => {
 
       setItems(Moment.monthsShort().map(elem => ({label: elem, value: elem})))
     }
-    // let show = true
-    // if(context.token && show) {
+
     if(context.token) {
       getAppointment(context.token)
         .then(response =>{
           if(response && response.status === 200){
-            console.log('==================================')
-            console.log(response)
             setListAppointment(response.data)
           }
         })
@@ -54,8 +51,7 @@ export const AppointmentList = ({navigation}) => {
           setOpen={setOpen}
           setValue={setValue}
           setItems={setItems}
-          theme="LIGHT"
-          placeholder="mois"
+          placeholder="Mois"
         />
         <View style={{ width: "30%", alignItems: "center", }}>
           <Button
@@ -71,74 +67,16 @@ export const AppointmentList = ({navigation}) => {
           />
         </View>
       </View>
-      <FlatList
-        contentContainerStyle={{ marginBottom: '15%' }}
-        data={listAppointment}
-        renderItem={({ item }) => (
-          <View style={{
-            width: '91%',
-            display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
-            flexDirection: 'row',
-            marginLeft: 20,
-            marginRight: 20,
-            marginBottom: 15,
-            alignItems: 'center',
-            backgroundColor: '#FFFFFF',
-            borderRadius: 10,
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 3,
-            },
-            shadowOpacity: 0.29,
-            shadowRadius: 4.65,
-            elevation: 7
-          }}>
-            <View style={{
-              display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
-              flexDirection: 'column',
-              alignItems: "center",
-            }}>
-              <Text style={styles.dateWordStyle}>{Moment(item.start_datetime).format('D')}</Text>
-              <Text style={styles.dateWordStyle}>{Moment(item.start_datetime).format('MMM')}</Text>
-            </View>
-
-            <View style={{
-              display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
-              flexDirection: 'column',
-              order: 1,
-              width: '55%',
-              paddingLeft: '6%',
-              paddingRight: '6%',
-              paddingTop: '3%',
-              paddingBottom: '3%',
-            }}>
-              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x => x.person.lastname)} {item.person_appointment_project.map(x => x.person.firstname)}</Text>
-              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x => x.reference)}</Text>
-            </View>
-            <Text style={{ display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none', paddingRight: '5%' }}>{Moment(item.start_datetime).format('h:mm')}</Text>
-            <Button
-              title="Refresh"
-              buttonStyle={{
-                backgroundColor: '#F27405'
-              }}
-              onPress={() => {
-                let obj = Object.freeze(value);
-                obj = setValue(null)
-              }}
-            />
-          </View>
-        )}
-      />
       
       {listAppointment &&
         <FlatList
           contentContainerStyle={{marginBottom:'15%'}}
           data={listAppointment}
+          zIndex={-1}
           renderItem={({ item }) => (
             <View 
               style={{
-                width:'91%',
+                height: 110,
                 display:Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
                 flexDirection: 'row',
                 marginLeft:20,
@@ -154,9 +92,9 @@ export const AppointmentList = ({navigation}) => {
                 },
                 shadowOpacity: 0.29,
                 shadowRadius: 4.65,
-                elevation: 7
+                elevation: 7,
               }}
-          >
+            >
             <View style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none', flexDirection: 'column', alignItems: "center"}}>
               <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('D') }</Text>
               <Text style={styles.dateWordStyle}>{ Moment(item.start_datetime).format('MMM') }</Text>
@@ -166,31 +104,41 @@ export const AppointmentList = ({navigation}) => {
               style={{
                 display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',
                 flexDirection: 'column',
+                justifyContent: "space-around",
                 order: 1,
-                width:'55%',
-                paddingLeft: '6%',
-                paddingRight: '6%',
-                paddingTop: '3%',
-                paddingBottom: '3%'
+                width:'59%',
+                paddingLeft: 10,
+                paddingRight: 0,
+                paddingTop: 10,
+                paddingBottom: 10,
+                height: '100%'
               }}
             >
-              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.person.lastname)} {item.person_appointment_project.map(x=>x.person.firstname)}</Text>
-              <Text style={styles.projectWordStyle}>{item.person_appointment_project.map(x=>x.reference)}</Text>
+              {item.person_appointment_project.map((x, key) => (
+                <View key={key}>
+                  <Text style={styles.projectWordStyle}>{x.person.lastname + " " + x.person.firstname}</Text>
+                  <Text style={fontSize=10}>{x.reference}</Text>
+                </View>
+              ))}
             </View>
-            <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:'5%'}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
+            
+            <Text style={{display: Moment(item.start_datetime).format('MMM') == value || value == null ? 'flex' : 'none',paddingRight:10}}>{ Moment(item.start_datetime).format('h:mm') }</Text>
+
             <Button
               onPress={()=> navigation.navigate('AppointmentDetail',{itemPerson:{
-                'lastname': item.person_appointment_project.map(x=>x.person.lastname),
-                'firstname': item.person_appointment_project.map(x=>x.person.firstname),
+                'lastname1': item.person_appointment_project[0].person.lastname,
+                'firstname1': item.person_appointment_project[0].person.firstname,
+                'lastname2': item.person_appointment_project[1] && item.person_appointment_project[1].person.lastname,
+                'firstname2': item.person_appointment_project[1] && item.person_appointment_project[1].person.firstname,
                 'reference': item.person_appointment_project.map(x=>x.reference),
                 'subject': item.subject,
-                'address': item.person_appointment_project.map(x=>x.address.number)+ " " + item.person_appointment_project.map(x=>x.address.street),
-                'additional_address': item.person_appointment_project.map(x=>x.address.additional_address),
-                'building': item.person_appointment_project.map(x=>x.address.building),
-                'floor': item.person_appointment_project.map(x=>x.address.floor),
-                'residence': item.person_appointment_project.map(x=>x.address.residence),
+                'address': item.person_appointment_project.map(x => x.project.address && x.project.address.number + " " + x.project.address.street),
+                'additional_address': item.person_appointment_project.map(x => x.project.address && x.project.address.additional_address),
+                'building': item.person_appointment_project.map(x => x.project.address && x.project.address.building),
+                'floor': item.person_appointment_project.map(x => x.project.address && x.project.address.floor),
+                'residence': item.person_appointment_project.map(x => x.project.address && x.project.address.residence),
                 'typeProject': item.person_appointment_project.map(x=>x.typeProject.name),
-                'staircase': item.person_appointment_project.map(x=>x.address.staircase),
+                'staircase': item.person_appointment_project.map(x => x.project.address && x.project.address.staircase),
                 'phone': item.person_appointment_project.map(x=>x.person.phone),
                 'hours': Moment(item.start_datetime).format('h:mm'),
                 'date': Moment(item.start_datetime).format('DD/MM/YYYY')
@@ -232,7 +180,7 @@ const styles = StyleSheet.create(
       fontSize:32,
     },
     viewDate:{
-      marginTop:'25%',
+      marginTop:'15%',
       marginBottom:'3%',
       width:'30%',
       marginLeft:'6%'

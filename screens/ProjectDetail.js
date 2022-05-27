@@ -199,8 +199,8 @@ export default function DetailsScreen({navigation,route}) {
 
                 <View style={styles.listOptionProperty}>
                     
-                    {dataRooms.map(room =>
-                        <Text>{room.name} {room.area}m² | </Text>
+                    {dataRooms.map((room, key) =>
+                        <Text key={key}>{room.name} {room.area}m² | </Text>
                     )}
                 </View>
 
