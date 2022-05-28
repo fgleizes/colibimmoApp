@@ -188,7 +188,6 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				DF891BE6ED812E1EE381E83E /* [CP] Embed Pods Frameworks */,
 				69C19AEF7A6C48189A3DE9D1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -211,7 +210,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				D6B8A28083E28F9E5C59147A /* [CP] Embed Pods Frameworks */,
 				088FA54EE7867E7BCE8FE1A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -378,40 +376,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp-colibimmoAppTests/Pods-colibimmoApp-colibimmoAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D6B8A28083E28F9E5C59147A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp/Pods-colibimmoApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp/Pods-colibimmoApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp/Pods-colibimmoApp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DF891BE6ED812E1EE381E83E /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp-colibimmoAppTests/Pods-colibimmoApp-colibimmoAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp-colibimmoAppTests/Pods-colibimmoApp-colibimmoAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-colibimmoApp-colibimmoAppTests/Pods-colibimmoApp-colibimmoAppTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -527,12 +491,12 @@
 				DEVELOPMENT_TEAM = L229B643WV;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = colibimmoApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -555,12 +519,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = L229B643WV;
 				INFOPLIST_FILE = colibimmoApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 11.4;
+				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

@@ -42,7 +42,7 @@ export const DetailAppointment = ({route,navigation}) => {
       <Image
         style={{position:'absolute',top:2,width: "100%",
           height: "35%",}}
-        source={require('C:/wamp64/www/colibimmoApp/IMG/imgAppart.jpg')}
+        source={require('./../IMG/imgAppart.jpg')}
       />
       <TouchableOpacity
            style= {[styles.button,{marginLeft:20}]}
@@ -67,13 +67,18 @@ export const DetailAppointment = ({route,navigation}) => {
                         alignSelf:'center'
                     }}>            
             <View style={{display:"flex", flexDirection:"row" , justifyContent:'space-between'}}>
-                <Text style={{fontSize:20,fontWeight: "bold", marginBottom:5}}>{itemPerson.lastname} {itemPerson.firstname}</Text>
+              <View style={{display: "flex", flexDirection: "column"}}>
+                <Text style={{fontSize:20,fontWeight: "bold", marginBottom:5}}>{itemPerson.lastname1} {itemPerson.firstname1}</Text>
+                <Text style={{fontSize:20,fontWeight: "bold", marginBottom:5}}>{itemPerson.lastname2} {itemPerson.firstname2}</Text>
+              </View>
                 <Text style={{marginTop:5}}>{itemPerson.date}</Text>
             </View>
-            <Text>{itemPerson.typeProject}</Text>
-            <Text>{itemPerson.address} {itemPerson.additional_address} {itemPerson.building}
-            {itemPerson.floor} {itemPerson.residence} {itemPerson.staircase}
+            {/* <Text>{itemPerson.typeProject}</Text> */}
+
+            <Text>
+              {itemPerson.address} {itemPerson.additional_address} {itemPerson.building} {itemPerson.floor} {itemPerson.residence} {itemPerson.staircase}
             </Text>
+
             <View style={{display:"flex", flexDirection:"row" , justifyContent:'space-between',marginTop:20}}>
                 <Text style={{fontSize:20,fontWeight: "bold",color:"#F27405"}}>{itemPerson.hours}</Text>
                 

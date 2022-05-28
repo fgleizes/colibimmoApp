@@ -30,23 +30,13 @@ export const UserContextProvider = ({ children }) => {
     setIsLoggedIn(true)
     saveToken(token)
     saveUser(user)
-    // localStorage.setItem("isLoggedIn", true)
-    // localStorage.setItem("userToken", token)
-    // localStorage.setItem("user", JSON.stringify(user))
   }
   const logout = () => {
     setIsLoggedIn(false)
     saveToken(null)
     saveUser({ lastname: "", firstname: "" })
-    // localStorage.removeItem("isLoggedIn")
-    // localStorage.removeItem("userToken")
-    // localStorage.removeItem('user')
   }
-
   const userData = {
-    // isLoggedIn: localStorage.getItem("isLoggedIn") ? localStorage.getItem("isLoggedIn") : isLoggedIn,
-    // token: localStorage.getItem("userToken") ? localStorage.getItem("userToken") : token,
-    // user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : user,
     isLoggedIn: isLoggedIn,
     token: token,
     user: user,

@@ -1,16 +1,10 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet } from "react-native";
 import { LoginForm } from '../components/LoginForm';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default function LoginScreen({ navigation }) {
   const [isLoggin, setIsLogin] = useState(null)
-
-  useEffect(() => {
-    if(isLoggin) {
-      navigation.navigate("Home");
-    }
-  }, [isLoggin]);
 
   useEffect(() => {
     if (isLoggin) {
@@ -37,6 +31,7 @@ export default function LoginScreen({ navigation }) {
     </View>
   );
 }
+
 var styles = StyleSheet.create({
   linearGradient: {
     flex: 1,
